@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nichola Philbey OT Dashboard — User Guide</title>
+<style>
+  :root{
+    --sage:#3d7a6b; --sage-dark:#2d5a4f; --sage-light:#e8f2ef; --sage-pale:#f2f7f5;
+    --ink:#1a2b1e; --mid:#4a5249; --light:#8a9490; --sand:#e8e4dc; --sand-border:#d8d2c6;
+    --amber:#b07d1a; --amber-light:#fef3e2; --card:#ffffff; --bg:#f6f4ef;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Segoe UI",Calibri,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:15px;}
+  a{color:var(--sage);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 80px;}
+  header.hero{background:var(--sage);color:#fff;padding:34px 24px;margin-bottom:0;}
+  header.hero .inner{max-width:920px;margin:0 auto;}
+  header.hero h1{font-size:26px;font-weight:800;margin-bottom:6px;letter-spacing:0;}
+  header.hero .sub{font-size:14px;opacity:0.92;}
+  header.hero .ver{display:inline-block;margin-top:12px;background:rgba(255,255,255,0.18);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:600;}
+  nav.toc{background:var(--card);border:1px solid var(--sand-border);border-radius:12px;padding:20px 24px;margin:24px 0;}
+  nav.toc h2{font-size:13px;text-transform:uppercase;letter-spacing:0.06em;color:var(--light);margin-bottom:12px;}
+  nav.toc ol{list-style:none;counter-reset:c;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;}
+  nav.toc li{counter-increment:c;}
+  nav.toc li a{display:flex;gap:10px;padding:5px 0;font-weight:600;font-size:14px;}
+  nav.toc li a::before{content:counter(c);background:var(--sage-light);color:var(--sage);border-radius:6px;min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+  section.chapter{background:var(--card);border:1px solid var(--sand-border);border-radius:12px;padding:26px 28px;margin-bottom:20px;scroll-margin-top:16px;}
+  section.chapter > h2{font-size:20px;font-weight:800;color:var(--sage);margin-bottom:4px;display:flex;align-items:center;gap:10px;}
+  section.chapter > .lead{color:var(--mid);font-size:14px;margin-bottom:18px;}
+  h3{font-size:16px;font-weight:700;color:var(--ink);margin:22px 0 8px;border-left:3px solid var(--sage);padding-left:10px;}
+  h4{font-size:14px;font-weight:700;color:var(--ink);margin:16px 0 6px;}
+  p{margin-bottom:12px;}
+  ul,ol.steps{margin:0 0 14px 22px;}
+  li{margin-bottom:6px;}
+  ol.steps{counter-reset:s;list-style:none;margin-left:0;}
+  ol.steps > li{counter-increment:s;position:relative;padding-left:34px;margin-bottom:10px;}
+  ol.steps > li::before{content:counter(s);position:absolute;left:0;top:0;background:var(--sage);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;}
+  .tip{background:var(--sage-pale);border:1px solid var(--sand-border);border-left:4px solid var(--sage);border-radius:8px;padding:12px 16px;margin:14px 0;font-size:14px;}
+  .tip b{color:var(--sage-dark);}
+  .warn{background:var(--amber-light);border:1px solid #f0d49a;border-left:4px solid var(--amber);border-radius:8px;padding:12px 16px;margin:14px 0;font-size:14px;color:#7a5712;}
+  .new{display:inline-block;background:var(--sage);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle;letter-spacing:0.04em;}
+  code{background:#eef1f0;border-radius:4px;padding:1px 6px;font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace;}
+  pre{background:#1e2820;color:#dfeae4;border-radius:8px;padding:14px 16px;overflow:auto;font-size:12.5px;line-height:1.6;margin:10px 0;font-family:ui-monospace,Menlo,Consolas,monospace;}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  th,td{border:1px solid var(--sand-border);padding:7px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--sage-light);font-weight:700;color:var(--sage-dark);}
+  .pill{display:inline-block;background:var(--sage-light);color:var(--sage-dark);border:1px solid #bcdcd2;border-radius:20px;padding:1px 10px;font-size:12px;font-weight:600;}
+  footer{text-align:center;color:var(--light);font-size:12px;padding:30px 0 0;}
+  .backtop{display:inline-block;margin-top:10px;font-size:12px;color:var(--light);}
+  @media(max-width:640px){nav.toc ol{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="inner">
+  <h1>🌿 Nichola Philbey OT — Dashboard User Guide</h1>
+  <div class="sub">Everything you need to run your practice from one private, secure dashboard.</div>
+  <div class="ver">Updated June 2026 · current build</div>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>📋 Contents</h2>
+  <ol>
+    <li><a href="#whatsnew">What's new — latest update</a></li>
+    <li><a href="#ch1">Getting Started, Security &amp; Backups</a></li>
+    <li><a href="#ch2">The Phrase &amp; Resource Library</a></li>
+    <li><a href="#ch3">Clients &amp; Client Types</a></li>
+    <li><a href="#ch4">Assessments &amp; Reports</a></li>
+    <li><a href="#ch5">Sessions, Notes &amp; the Observation Form</a></li>
+    <li><a href="#ch6">Templates (and how freezing works)</a></li>
+    <li><a href="#ch7">Communications</a></li>
+    <li><a href="#ch8">Finances — Invoices, Mileage, Expenses, Tax</a></li>
+    <li><a href="#ch9">CPD, Supervision &amp; Power Features</a></li>
+  </ol>
+</nav>
+
+<section class="chapter" id="whatsnew">
+<h2>🆕 What's new — latest update</h2>
+<p class="lead">The newest features and important fixes, sitting on top of everything below.</p>
+<ul>
+<li><b>One AI button, with writing styles.</b> Everywhere you used to see separate <b>Draft</b> and <b>Refine</b> buttons there is now a single small <b>sparkle with a little down-arrow (✨▾)</b>. Tap it and choose how to write: <b>Plain</b> (warm, jargon-light — for parents), <b>Balanced</b> (professional but readable — the default) or <b>Clinical</b> (formal — for EHCP panels), or pick <b>Refine</b> to tidy text that's already in the box. It's on every report section, every session-note field (including Additional Notes), the Observation Form, "Draft all fields" and the Templates refine fields. The two document readers stay as their own buttons.</li>
+<li><b>Undo on AI.</b> Straight after any AI draft or refine a small message appears bottom-right with an <b>Undo</b> button (about 14 seconds) that puts the field back exactly as it was. If the AI's version isn't right, one click reverses it.</li>
+<li><b>Plainer writing for parents.</b> If a report reads too clinically, use the <b>Plain</b> style — same meaning, jargon explained in everyday words.</li>
+<li><b>Document categories you can tag.</b> Every file in <b>Documents</b> now has a little category dropdown — Correspondence, Consent &amp; Referral, Reports &amp; Assessments, School &amp; EHCP, Screenshots &amp; Photos, Other. Tag a file and it counts in the tiles at the top, so you can click "School &amp; EHCP" and see everything from school at once. New uploads and session photos are sorted automatically.</li>
+<li><b>Travel on invoices — quoted or calculated.</b> Travel time now bills separately from mileage as its own <b>Travel</b> line. Per invoice you choose a <b>Quoted</b> amount (type the agreed figure — the default) or <b>Calculated</b> (minutes from the journey times × your rate, overridable). No more mismatch between an agreed travel fee and the logged minutes.</li>
+<li><b>Editable reminder emails.</b> The session reminder — and a separate <b>assessment</b> reminder — are now editable under <b>Templates → Emails</b>. When the appointment is an assessment, the assessment wording is used automatically.</li>
+<li><b>Logo toggle on sessions.</b> The "show practice logo on exports" checkbox now also sits next to the Export buttons on a session note (it's the same single global setting).</li>
+<li><b>Secure intake + consent as proof.</b> In <b>Intake</b> you must click <b>Set up secure intake</b> once (there's now a step for it on the Home checklist) so your forms can receive submissions. The two forms behave differently: a <b>questionnaire</b> has <b>Create client</b> (it makes the client record); a <b>consent form</b> has <b>File consent</b> — pick the matching client and it saves a dated <b>Record of Consent</b> PDF into their Documents as legal proof and ticks "Consent form signed".</li>
+</ul>
+<div class="warn"><b>Your data is better protected now.</b> If a different or older copy of your data is ever found in the cloud when you log in, the dashboard no longer silently replaces what's on your device — it keeps your data and asks first. A background sync can no longer wipe your records. You can still deliberately restore an earlier version from <b>Backups</b> whenever you want.</div>
+</section>
+
+<section class="chapter">
+<h2>✨ New in v84</h2>
+<p class="lead"><b>v84</b> — the report preview, PDF and Word now all generate from one shared engine, so the three versions always match exactly. As part of that, the "Assessment Process" section now names only the assessments actually carried out for that child (rather than a fixed list). Everything below still applies:</p>
+<p style="font-weight:700;color:var(--sage);margin:2px 0 6px;">Latest additions</p>
+<ul>
+<li><b>Contents page on every report.</b> Reports now open with a numbered <b>Contents</b> list (cover → Contents → first section). It's built automatically from the sections that actually print, so if you switch a section off it drops out of the contents and the rest renumber — the numbering can never get out of step. It shows in Preview, PDF and Word.</li>
+<li><b>Six new Marie report sections.</b> Marie reports can now include <b>Postural Management &amp; Equipment</b> (after Self-Care) plus five functional domains grouped after Sensory Processing — <b>Sleep, Communication, Cognition, Mood &amp; Behaviour, Social &amp; Relationships</b>. You edit them in the client's <b>Marie Report</b> tab; each has its own include/exclude toggle and its own <b>💬 Phrases</b> set, and they only appear on Marie reports when they have text.</li>
+<li><b>Word export for the money documents.</b> The <b>Travel log</b> and <b>Expenses</b> now each have <b>⬇ PDF</b> and <b>⬇ Word</b> (period-aware), and the <b>Invoice</b> preview has a new <b>Word</b> button beside Download PDF. So every financial document exports to CSV, PDF and Word.</li>
+<li><b>One consistent look across all documents.</b> Invoices, the CPD log and supervision records now use the same logo-top-left header as your reports (the old green banners are gone). The include/exclude-logo toggle applies to them too.</li>
+<li><b>Gentle "next step" prompts.</b> After you book a session you'll see a <b>Write the note</b> button; after saving a note, <b>Log the journey</b>; after marking an invoice paid, <b>Next unpaid →</b>. They're optional — ignore them and they fade away.</li>
+<li><b>First-run setup checklist.</b> On the Home screen a card walks you through getting ready (recovery key, profile, practice details, bank details, first client). Because your details are pre-filled it's a quick <i>review-and-confirm</i> with "Looks right" ticks, and it hides itself once done.</li>
+</ul>
+<p style="font-weight:700;color:var(--sage);margin:10px 0 6px;">Earlier in v84</p>
+<ul>
+<li><b>Multiple assessments per child.</b> A client can hold several dated assessments over time. On the client's record there's an <b>Assessments</b> card — each has an editable label ("Initial", "Annual review") and a date, an <b>Open</b> button, and its own <b>PDF / Word</b> export. <b>➕ New assessment</b> starts a fresh blank one and safely files the current one away — nothing is overwritten. The Assessment tab shows the same dated selector at the top.</li>
+<li><b>Start an assessment on a pre-assessed referral.</b> If a treatment-only child later needs assessing, a <b>➕ Start an assessment</b> button turns it into a full assessment; the uploaded external report stays in Documents.</li>
+<li><b>Services &amp; prices (invoicing).</b> Profile &amp; Settings → Bank Details has a <b>Services &amp; prices</b> list — each entry is <i>per hour</i> or <i>flat fee</i> with a price, and fills in automatically on invoice lines (still editable per invoice). Defaults: £60/hr, £25/hr travel, 45p/mile, £480 Motor co-ordination assessment.</li>
+<li><b>Cloud sync health &amp; two-device safety.</b> The Cloud Sync tab now shows <b>"Last synced …"</b> and warns if sync has failed repeatedly (for example a paused free Supabase project). When you unlock on a second device, if the cloud holds a newer backup it offers to restore it before anything is overwritten.</li>
+<li><b>Reports read identically</b> across Preview, PDF and Word — including the red / amber / green score key, now shown in all three. (Under the bonnet, all three exports now build from a single shared "report model", so they can never drift apart again.)</li>
+<li><b>CSV export</b> on Invoices and Expenses — a <b>⬇ CSV</b> button downloads a spreadsheet-ready file you can open in Excel or Numbers (handy for your accountant).</li>
+<li><b>CPD log as a PDF</b> — the CPD page has <b>⬇ Export PDF</b>, producing a tidy log of every entry, your reflections and total hours, ready for an HCPC audit.</li>
+<li><b>Storage meter</b> in Documents — shows how much of this device's space the dashboard is using, and warns as it fills, so large uploads don't catch you out.</li>
+<li><b>Permanent client deletion (GDPR erasure)</b> — for a discharged client you can now erase the record entirely. It downloads a full backup first and makes you type DELETE to confirm.</li>
+<li><b>Smaller touches</b> — the header shows a live <b>sync status</b> pill; invoice PDFs say <i>"Payment is kindly requested by &lt;due date&gt;"</i> when a due date is set; and if you start typing a note then click away, the dashboard asks before discarding unsaved changes.</li>
+</ul>
+</section>
+
+<!-- ───────────────────────── CH1 ───────────────────────── -->
+<section class="chapter" id="ch1">
+  <h2>🚀 1 · Getting Started, Security &amp; Backups</h2>
+  <p class="lead">The dashboard is a single secure file that runs in your web browser. All your data lives on your own computer — nothing is sent anywhere unless you choose to set up cloud backup.</p>
+
+  <h3>Opening the dashboard &amp; your master password</h3>
+  <p>Open the dashboard file in your browser (bookmark it so it's always one click away). The first time, you'll set a <b>master password</b>. Everything you save is encrypted with it, so only you can open your data.</p>
+  <ol class="steps">
+    <li>First run: choose a master password you'll remember. This encrypts all your data.</li>
+    <li>Every time after: type your password to unlock.</li>
+    <li>Use the <b>Lock</b> button (shield icon, top-right) to lock the dashboard when you step away.</li>
+  </ol>
+  <h3>Quick unlock — PIN or Windows Hello <span class="new">v84</span></h3>
+  <p>Typing your full master password every time gets tedious. On the lock screen you can optionally set up a faster unlock for this device:</p>
+  <ul>
+    <li><b>Quick PIN</b> — choose a short PIN to unlock on this computer. Your master password still works and is still what protects the data.</li>
+    <li><b>Windows Hello</b> — if your laptop supports it (fingerprint or face), you can unlock with that instead.</li>
+  </ul>
+  <p>These are conveniences tied to this device only — they don't replace your master password, and they never travel with the file. If you move to a new computer, you unlock with the master password and can set up a quick PIN there too.</p>
+
+  <h3>Recovery key <span class="new">IMPORTANT</span></h3>
+  <div class="warn"><b>Set up a recovery key before you do anything else.</b> Your data is encrypted with your master password. If you forget that password and have no recovery key, your data <em>cannot</em> be recovered — not by anyone. The recovery key is your safety net.</div>
+  <ol class="steps">
+    <li>Go to <b>Profile &amp; Settings → Security</b>.</li>
+    <li>Click <b>Generate recovery key</b>.</li>
+    <li>Write the key down and keep it somewhere safe and separate from your laptop (not in the same notes app).</li>
+  </ol>
+
+  <h3>Backups — three layers</h3>
+  <table>
+    <tr><th>Method</th><th>Where</th><th>Notes</th></tr>
+    <tr><td>Manual JSON export/import</td><td>Download/Upload buttons in the header</td><td>A complete file you can store anywhere. Import to restore.</td></tr>
+    <tr><td>☁ OneDrive backup</td><td>Profile &amp; Settings → ☁ OneDrive</td><td>Auto-save (30s after a change), daily snapshots, and manual backups to your Microsoft 365 OneDrive.</td></tr>
+    <tr><td>☁ Cloud Sync (Supabase)</td><td>Profile &amp; Settings → ☁ Cloud Sync</td><td>Encrypted backup that persists across devices and browser clears. See below.</td></tr>
+  </table>
+
+  <h3>Setting up Cloud Sync (Supabase) <span class="new">v79</span></h3>
+  <p>Cloud Sync keeps an encrypted copy of your whole dashboard in a free Supabase project. Your data is <b>encrypted on your device before it is sent</b>, so Supabase only ever stores scrambled text — no readable client information ever leaves your computer.</p>
+  <div class="warn">Set up your <b>recovery key first</b> (above). Because the cloud copy is encrypted with your master password, a forgotten password means the cloud backup is unrecoverable too.</div>
+  <ol class="steps">
+    <li>Create a free project at <a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a>.</li>
+    <li>In Supabase's <b>SQL Editor</b>, run the snippet shown on the Cloud Sync tab — it creates the table <em>and</em> turns on Row-Level Security:
+      <pre>create table ot_data (id text primary key, payload jsonb, updated_at timestamptz default now());
+alter table ot_data enable row level security;
+create policy "anon owns the single backup row"
+  on ot_data for all to anon
+  using (id = 'main') with check (id = 'main');</pre>
+    </li>
+    <li>In Supabase: <b>Project Settings → API</b> — copy your <b>Project URL</b> and <b>anon/public key</b>.</li>
+    <li>In the dashboard: <b>Profile &amp; Settings → ☁ Cloud Sync</b> — paste both and click <b>Connect &amp; Test</b>.</li>
+    <li>After that it syncs automatically on every save. Use <b>Restore from cloud backup</b> if you ever need to pull it back.</li>
+  </ol>
+  <div class="tip"><b>How safe is it?</b> The encryption protects your data, not Supabase's settings — that's why the recovery key matters. Cloud Sync is best as a backup from one main device (it saves the whole dataset each time, so the most recent save wins).</div>
+
+  <h3>Getting around</h3>
+  <p>The left sidebar is your main menu. The top bar has <b>global search</b> (press <code>⌘K</code> / <code>Ctrl+K</code>), the notifications bell, font-size (<b>Aa</b>), dark mode, and the lock button.</p>
+  <a class="backtop" href="#ch1">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH2 ───────────────────────── -->
+<section class="chapter" id="ch2">
+  <h2>📚 2 · The Phrase &amp; Resource Library</h2>
+  <p class="lead">Your Library (sidebar) holds re-usable clinical phrases and a picture resource catalogue, so you're never writing the same sentence twice.</p>
+  <h3>Phrases</h3>
+  <ul>
+    <li><b>Standard phrases</b> — grouped clinical sentences you can drop into any report or note.</li>
+    <li><b>Saved phrases</b> — your own favourites; add new ones as you go.</li>
+    <li><b>Sentence builder</b> — assemble a sentence from parts where useful.</li>
+  </ul>
+  <h3>Resource Library (picture cards)</h3>
+  <p>A catalogue of equipment and resources (handwriting aids, seating, sensory tools, etc.) with images, costs and suppliers. This is the single source for the <b>Resources Appendix</b> that can be attached to a report — choose a child's resources here.</p>
+  <a class="backtop" href="#ch2">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH3 ───────────────────────── -->
+<section class="chapter" id="ch3">
+  <h2>👤 3 · Clients &amp; Client Types</h2>
+  <p class="lead">The Clients tab is your caseload. Click any client to open their full record (Overview, Assessment, Sessions, Communication, Documents and more).</p>
+
+  <h3>The Waitlist</h3>
+  <p>Not every referral is ready to start. The Clients page has a <b>Waitlist</b> tab for enquiries and referrals you haven't begun yet — so they're tracked without cluttering your active caseload. Add a waitlist entry with the child's details and the referral reason; when you're ready to take them on, convert the entry into a full client. Waitlisted children don't appear in your active client counts or reports until they're started.</p>
+
+  <h3>Adding a client</h3>
+  <ol class="steps">
+    <li>Click <b>+ Add Client</b>.</li>
+    <li>Fill in name, DOB, school, addresses (there's an optional UK postcode lookup).</li>
+    <li>Choose the assessments that apply using the multi-select pills (tick all that apply — MABC-2, BOT-2, VMI, SPM-2, COPM, Sensory Profile, or a free-form Ad-hoc).</li>
+    <li>Tick <b>Use Marie assessment report format</b> if it's a Marie referral.</li>
+  </ol>
+
+  <h3>Pre-assessed referrals <span class="new">v79</span></h3>
+  <p>For a child who was assessed elsewhere (e.g. by the NHS) and only needs treatment, tick <b>📂 Pre-assessed referral</b> when adding them. This client type:</p>
+  <ul>
+    <li>Has no assessment pills and no assessment-to-report workflow — so progress indicators won't sit stuck at incomplete.</li>
+    <li>Shows a 📂 marker instead of a progress ring.</li>
+    <li>Lets you <b>upload the existing report</b> from their Assessment tab (it's stored under Documents → Reports &amp; Assessments).</li>
+    <li>Works fully for Sessions, Goals, Communications and Invoicing.</li>
+  </ul>
+  <div class="tip">You can also create one instantly from <b>Sessions → Log a Session → ➕ New client — pre-assessed referral</b> when a treatment-only child turns up.</div>
+
+  <h3>The client record tabs</h3>
+  <ul>
+    <li><b>Overview</b> — snapshot, next session, last seen, quick actions.</li>
+    <li><b>Assessment</b> — the single hub for all assessment data <em>and</em> the report's written sections.</li>
+    <li><b>Sessions</b> — this child's sessions; open a note, write it up, or edit session details (see Ch.5).</li>
+    <li><b>Communication</b> — calls, emails and letters logged for this child.</li>
+    <li><b>Documents</b> — uploaded files (reports, consent, letters, photos). The main <b>Documents</b> page (in the sidebar) now also shows a <b>storage meter</b> — how much of this device's space the dashboard is using. Browsers cap it at roughly 5&nbsp;MB, and big scans/photos fill it fastest, so if it turns amber/red, download and remove older files here or keep large ones in OneDrive.</li>
+    <li><b>Checklist</b> — the workflow checklist (Intake → Assessment → Report → Close). Switched off for pre-assessed referrals.</li>
+    <li><b>Goals</b> — measurable goals with progress.</li>
+  </ul>
+
+  <h3>Discharging &amp; permanently erasing a record <span class="new">v82</span></h3>
+  <p>When you finish with a child, <b>discharge</b> them — they move to the <b>Archive</b> tab and are kept (the dashboard reminds you records are normally retained for five years). Discharge is reversible.</p>
+  <p>If a parent exercises their right to erasure, or once retention has lapsed, you can <b>permanently delete</b> a discharged record. On the Archive tab, the <b>🗑 Delete</b> button on a discharged client:</p>
+  <ol>
+    <li>first <b>downloads a full backup</b> of everything linked to that child (sessions, notes, documents, comms, goals, invoices, mileage, expenses, sticky note) to your computer;</li>
+    <li>then asks you to <b>type DELETE</b> to confirm;</li>
+    <li>then permanently removes the child and all their clinical records (sessions, notes, documents, comms, goals, mileage, expenses, sticky note).</li>
+    <li><b>Invoices are kept.</b> Any bills you raised for that child stay in your Invoices list (HMRC expects financial records kept for ~6 years) — so if a child doesn't proceed, you still bill your time, the bill remains, and the child's records go. A kept invoice shows the child's name with a small <i>(erased)</i> tag.</li>
+  </ol>
+  <div class="tip"><b>Please note:</b> this can't be undone from inside the dashboard, and the backup it saves is for your records — it isn't re-imported automatically. Keep that file somewhere safe if there's any chance you'll need it.</div>
+  <a class="backtop" href="#ch3">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH4 ───────────────────────── -->
+<section class="chapter" id="ch4">
+  <h2>📊 4 · Assessments &amp; Reports</h2>
+  <p class="lead">All assessment data and the written report live in the client's <b>Assessment</b> tab. Choose which tests apply with the pills at the top; only completed tests appear in the exported report.</p>
+
+  <h3>Entering scores &amp; narratives</h3>
+  <ul>
+    <li><b>MABC-2</b>, <b>BOT-2</b> (a child can hold both), <b>VMI/VP/MC</b> (Beery), <b>SPM-2</b> (home &amp; school), <b>COPM</b> (pre &amp; post), <b>Sensory Profile</b> (quadrants), plus <b>Fine motor</b>, <b>Daily Living</b> and a free-form <b>Ad-hoc</b> assessment.</li>
+    <li>Scores auto-interpret into colour bands; the report builds the matching tables automatically.</li>
+    <li><b>Previous Results</b> — log earlier dated results of any test; the report prints the latest in full plus a short comparison table.</li>
+  </ul>
+
+  <h3>Per-field "In report / Not needed" toggles</h3>
+  <p>Every report section and narrative has a small <span class="pill">✓ In report</span> / <span class="pill">✗ Not needed</span> toggle in its header. Switch one off to leave it out of the export — the text is kept, just hidden — so you never send a report with half-finished sections.</p>
+
+  <h3>De-selecting an assessment</h3>
+  <p>If you tick a test on by mistake, you can de-select its pill — the data you entered is <b>retained</b>, just hidden from the report. Re-tick it and it's back.</p>
+
+  <h3>Exporting the report <span class="new">v79</span></h3>
+  <p>The <b>Export</b> area gives one unified full report with three buttons:</p>
+  <table>
+    <tr><th>Button</th><th>What you get</th></tr>
+    <tr><td>Export as PDF</td><td>A finished PDF, ready to send.</td></tr>
+    <tr><td>Export as Word</td><td>An editable .docx — identical layout to the PDF.</td></tr>
+    <tr><td>Print / Preview (HTML)</td><td>Opens in a new tab; use your browser's Print → Save as PDF.</td></tr>
+  </table>
+  <p>All three share one house style: your logo top-left beside the title with your credentials underneath, a bordered client-info table, sage section headings, justified body text, and a footer on every page with the child's name, DOB and age.</p>
+
+  <h3>Contents page <span class="new">v84</span></h3>
+  <p>Every report opens with a numbered <b>Contents</b> list, just after the cover details. It's generated from the sections that actually print — so if you switch a section to "Not needed", it drops out of the contents and everything renumbers automatically. The numbering only appears in the contents; section headings in the body stay clean.</p>
+
+  <h3>Extra Marie report sections <span class="new">v84</span></h3>
+  <p>Marie reports can include six further sections, edited in the client's <b>Marie Report</b> tab and toggled on/off like any other: <b>Postural Management &amp; Equipment</b> (after Self-Care) and five functional domains after Sensory Processing — <b>Sleep, Communication, Cognition, Mood &amp; Behaviour, Social &amp; Relationships</b>. Each has its own <b>💬 Phrases</b> set to build the wording from; they print only when they contain text.</p>
+  <a class="backtop" href="#ch4">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH5 ───────────────────────── -->
+<section class="chapter" id="ch5">
+  <h2>📅 5 · Sessions, Notes &amp; the Observation Form</h2>
+  <p class="lead">Record everything you do with a child — booked from the calendar or logged after the fact — and write it up as a standard session note or a structured Observation Form.</p>
+
+  <h3>Two ways to create a session</h3>
+  <ul>
+    <li><b>Calendar</b> — book a session on a date; it appears in Sessions and the client record.</li>
+    <li><b>Log a Session</b> <span class="new">v79</span> — in the Sessions tab, record a session that already happened (no calendar booking needed) and go straight into the write-up.</li>
+  </ul>
+
+  <h3>Opening &amp; writing a note</h3>
+  <ol class="steps">
+    <li>From the Sessions list <em>or</em> the client's Sessions tab, open a session (📖 Open note / ✏️ Write note).</li>
+    <li>The note opens as a full page (not a popup). Set attendance, then fill the fields.</li>
+    <li>Standard note fields: Session Goals, Observations, <b>Cooperation and Motivation</b>, Next Steps, Additional Notes. Each has the ✓ In report / ✗ Not needed toggle.</li>
+    <li>Use the 🎤 mic on any field to dictate, or your pen (see tip) to handwrite.</li>
+    <li>Click <b>Save Note</b>.</li>
+  </ol>
+  <div class="tip"><b>Pen &amp; voice input:</b> tap any text box and use the 🎤 mic to dictate. On a touchscreen/pen laptop (e.g. Yoga), write with the pen straight into a field and Windows converts your handwriting to typed text — all offline.</div>
+
+  <h3>The Observation Form <span class="new">v79</span></h3>
+  <p>Switch a session's write-up to the 🧸 <b>Observation Form</b> (choose it when logging/booking, or with the Form pills inside the note). It's a structured observation built from your master template, with collapsible sections:</p>
+  <ul>
+    <li>Opens on <b>Introduction &amp; Session Plan</b>; other sections are collapsed to keep it tidy.</li>
+    <li>Each section header shows its state: <span class="pill">○ Not started</span>, <span class="pill">3/9 noted</span>, or <span class="pill">✓ Complete</span>.</li>
+    <li>Grey prompts under each sub-heading guide you — these are <b>guidance only and never print</b>.</li>
+    <li>Each section and sub-heading has the ✓ In report / ✗ Not needed toggle.</li>
+    <li>Exports to PDF/Word in the same house style as your reports, with the per-page name/DOB/age footer.</li>
+  </ul>
+
+  <h3>Editing session details from the client <span class="new">v79</span></h3>
+  <p>Open a note from a client's Sessions tab and click <b>Edit Session Details</b> to change the date, type, time, duration or location — you stay right on the client's record.</p>
+  <a class="backtop" href="#ch5">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH6 ───────────────────────── -->
+<section class="chapter" id="ch6">
+  <h2>🧩 6 · Templates (and how freezing works)</h2>
+  <p class="lead">The <b>Templates</b> tab holds the standard wording that fills your documents, so you set it once and every new document uses it.</p>
+  <ul>
+    <li><b>📋 Core Report Text</b> — the standard intro paragraphs for each report section.</li>
+    <li><b>🧠 SPM-2 Subscales</b> — the SPM-2 boilerplate.</li>
+    <li><b>💜 Marie Template</b> — wording for Marie/EHCP reports (also editable from a Marie client's Assessment tab — the two mirror each other).</li>
+    <li><b>🧸 Observation Form</b> — the master structure for observations: edit headings, sub-headings and prompts, reorder or add/remove sections.</li>
+  </ul>
+
+  <h3>Freezing — past documents never change <span class="new">v79</span></h3>
+  <div class="tip"><b>The golden rule:</b> editing a template only affects <b>new and in-progress</b> documents. Any report or observation you've already issued keeps the exact wording it was created with. Past documents never change retrospectively — important for medico-legal integrity.</div>
+  <p>This happens automatically: a report locks its template wording the first time it's exported; an observation locks its structure when it's first saved. The content stays fully editable — only the shared template text is frozen against later edits.</p>
+  <a class="backtop" href="#ch6">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH7 ───────────────────────── -->
+<section class="chapter" id="ch7">
+  <h2>📞 7 · Communications</h2>
+  <p class="lead">Keep a running log of every call, email, text and letter — globally (Comms tab) and per child (their Communication tab).</p>
+  <ul>
+    <li>Log type, date, contact, a summary and notes.</li>
+    <li>Flag a <b>follow-up</b> with a date — it surfaces in the notifications bell when due.</li>
+    <li>The global Comms log shows the most recent entries per month with an expander for the rest.</li>
+  </ul>
+  <a class="backtop" href="#ch7">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH8 ───────────────────────── -->
+<section class="chapter" id="ch8">
+  <h2>💷 8 · Finances — Invoices, Mileage, Expenses, Tax</h2>
+  <p class="lead">Raise invoices, track travel and expenses, and keep an eye on your tax position.</p>
+
+  <h3>Invoices</h3>
+  <ul>
+    <li>The invoice builder opens as a full page. Add multiple line items (assessment, treatment, report writing, meetings, etc.), each with hours × rate or a flat amount.</li>
+    <li><b>Travel time and mileage are separate</b> — Marie charges/pays them differently — and you can pull in logged mileage and expenses, or add them on the fly.</li>
+    <li>Choose who it's billed to: a client, or <b>Marie — monthly invoice</b> for the consolidated Marie bill.</li>
+    <li>Invoices are fully editable after creation. The exported invoice now uses the same logo-top-left header as your reports (with your bank details below). <span class="new">v84</span></li>
+    <li><b>PDF and Word.</b> The invoice preview has <b>Download PDF</b> and a new <b>Word</b> button <span class="new">v84</span> — the Word version is an editable .docx with the same layout, useful when a payer wants to edit it. (There's still <b>Download + Email</b>, which saves the PDF and opens an email draft.)</li>
+    <li><b>Due date on the PDF.</b> If you set a due date, the invoice reads <i>"Payment is kindly requested by &lt;date&gt;"</i>. Leave it blank and it falls back to the usual "within 30 days".</li>
+    <li><b>⬇ CSV export.</b> The <b>⬇ CSV</b> button at the top of the Invoices list downloads every invoice (number, dates, client, status, amount, notes) as a spreadsheet file — easy to hand to your accountant or open in Excel/Numbers.</li>
+  </ul>
+
+  <h3>Mileage &amp; Expenses</h3>
+  <p>Log journeys (with optional parking/congestion costs) and expenses against a client or your practice. Both can be attached to invoices. Each page has a <b>Period</b> toggle (All time / Month / Tax year / Custom) that scopes the list, totals <em>and</em> the exports.</p>
+  <p><b>Three export formats each <span class="new">v84</span>:</b> the Travel/Mileage log and Expenses now both offer <b>⬇ CSV</b> (spreadsheet), <b>⬇ PDF</b> (a branded report with the shared header, summary and period total) and <b>⬇ Word</b> (the same as an editable .docx). Whatever period you've selected is exactly what the export contains, and the filename includes it.</p>
+
+  <h3>Tax &amp; summaries</h3>
+  <p>Income summary, annual summary and a Self-Assessment tax estimate help with your return.</p>
+  <a class="backtop" href="#ch8">↑ top</a>
+</section>
+
+<!-- ───────────────────────── CH9 ───────────────────────── -->
+<section class="chapter" id="ch9">
+  <h2>⚡ 9 · CPD, Supervision &amp; Power Features</h2>
+  <h3>CPD &amp; Supervision</h3>
+  <ul>
+    <li><b>CPD log</b> — record activities with hours, reflection and HCPC cycle; a category chart shows your spread. Use <b>⬇ Export PDF</b> to download the whole log — every entry, your reflections and total hours — as a single tidy PDF for an <b>HCPC audit</b>.</li>
+    <li><b>Supervision</b> — full reflective supervision records (opens as a page), tracking actions and themes.</li>
+  </ul>
+  <h3>Power features</h3>
+  <ul>
+    <li><b>Global search</b> (<code>⌘K</code> / <code>Ctrl+K</code>) — finds clients, sessions (incl. note content), invoices and comms.</li>
+    <li><b>Notifications bell</b> — overdue invoices, EHCP deadlines, follow-ups and reminders due.</li>
+    <li><b>Reminders / to-dos</b> — a manual checklist on the Home page.</li>
+    <li><b>Focus Mode</b>, <b>dark mode</b>, adjustable <b>font size</b>.</li>
+    <li><b>Annie</b> — your built-in AI assistant. Ask her how to do anything in the dashboard (needs your own Claude API key, entered once).</li>
+  </ul>
+  <div class="tip"><b>Stuck?</b> Open Annie and ask in plain English — she knows every feature in this guide.</div>
+  <a class="backtop" href="#ch9">↑ top</a>
+</section>
+
+<footer>
+  Nichola Philbey Occupational Therapy · Dashboard User Guide · v84 · Confidential
+</footer>
+</div>
+</body>
+</html>
