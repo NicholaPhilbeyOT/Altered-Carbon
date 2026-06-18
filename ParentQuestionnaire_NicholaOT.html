@@ -811,7 +811,30 @@
         const krows = kr.ok ? await kr.json() : [];
         if (!krows.length || !krows[0].jwk) { alert('This form is not set up to receive submissions yet \u2014 please contact Nichola directly.'); return; }
         const answers = {};
-        document.querySelectorAll('#content-digital input, #content-digital textarea, #content-digital select').forEach(function(el,i){ var _gp = el.closest('.field-group'); var _lb = _gp ? _gp.querySelector('.field-label') : null; var key = el.id || el.name || (_lb ? _lb.textContent.replace(/\*/g,'').trim() : ('field_'+i)); answers[key] = (el.type==='checkbox') ? el.checked : el.value; });
+        document.querySelectorAll('#content-digital .field-group').forEach(function(grp){
+          var lab = grp.querySelector('.field-label');
+          var key = lab ? lab.textContent.replace(/\*/g,'').replace(/\s+/g,' ').trim() : '';
+          var checks = grp.querySelectorAll('.check-item input[type=checkbox], .checklist-grid input[type=checkbox]');
+          if (checks.length) {
+            var picked = []; checks.forEach(function(c){ if(c.checked){ var cl=c.closest('label'); picked.push(cl ? cl.textContent.replace(/\s+/g,' ').trim() : 'Yes'); } });
+            if (!key) key = 'Selections';
+            if (picked.length) answers[key] = picked.join(', ');
+            return;
+          }
+          var radios = grp.querySelectorAll('input[type=radio]');
+          if (radios.length) {
+            var chosen=''; radios.forEach(function(r){ if(r.checked){ var ll=r.closest('label'); chosen = ll ? ll.textContent.replace(/\s+/g,' ').trim() : (r.getAttribute('value')||''); } });
+            if (!key) key = radios[0].name || 'field';
+            if (chosen) answers[key] = chosen;
+            var extra = grp.querySelector('input:not([type=radio]):not([type=checkbox]), textarea, select');
+            if (extra) { var ev=(extra.value||'').trim(); if(ev) answers[key+' \u2014 details'] = ev; }
+            return;
+          }
+          var inp = grp.querySelector('input, textarea, select'); if(!inp) return;
+          if (!key) key = inp.id || inp.name || 'field';
+          var v = (inp.value||'').trim(); if(v) answers[key] = v;
+        });
+        document.querySelectorAll('#content-digital .checkbox-item').forEach(function(item){ var c=item.querySelector('input[type=checkbox]'); var lab=item.querySelector('.checkbox-label'); if(c&&lab){ answers[lab.textContent.replace(/\*/g,'').replace(/\s+/g,' ').trim().slice(0,90)] = c.checked?'Yes':'No'; } });
         const env = await _intakeEncrypt(krows[0].jwk, JSON.stringify(answers));
         const r = await fetch(SB_URL + '/rest/v1/intake_submissions', { method:'POST', headers:{ apikey: SB_KEY, 'Content-Type':'application/json' }, body: JSON.stringify({ form_type:'questionnaire_child', payload: env }) });
         if (!(r.ok || r.status===201)) throw new Error('status ' + r.status);
