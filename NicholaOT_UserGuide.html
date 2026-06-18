@@ -1,398 +1,1028 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nichola Philbey OT Dashboard — User Guide</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Nichola Philbey OT — User Guide</title>
 <style>
   :root{
-    --sage:#3d7a6b; --sage-dark:#2d5a4f; --sage-light:#e8f2ef; --sage-pale:#f2f7f5;
-    --ink:#1a2b1e; --mid:#4a5249; --light:#8a9490; --sand:#e8e4dc; --sand-border:#d8d2c6;
-    --amber:#b07d1a; --amber-light:#fef3e2; --card:#ffffff; --bg:#f6f4ef;
+    --sage:#4A7C6F; --sage-deep:#2E5248; --sand:#F6F4EE; --card:#FFFFFF;
+    --ink:#2C3A33; --mid:#5C6B62; --light:#8A968D; --border:#E4E0D6; --sagepale:#ECF2EE;
+    --amber:#B5731F; --amberbg:#FBF0DD; --coral:#C75A3B; --blue:#3E6E96;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:"Segoe UI",Calibri,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;font-size:15px;}
-  a{color:var(--sage);text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px 80px;}
-  header.hero{background:var(--sage);color:#fff;padding:34px 24px;margin-bottom:0;}
-  header.hero .inner{max-width:920px;margin:0 auto;}
-  header.hero h1{font-size:26px;font-weight:800;margin-bottom:6px;letter-spacing:0;}
-  header.hero .sub{font-size:14px;opacity:0.92;}
-  header.hero .ver{display:inline-block;margin-top:12px;background:rgba(255,255,255,0.18);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:600;}
-  nav.toc{background:var(--card);border:1px solid var(--sand-border);border-radius:12px;padding:20px 24px;margin:24px 0;}
-  nav.toc h2{font-size:13px;text-transform:uppercase;letter-spacing:0.06em;color:var(--light);margin-bottom:12px;}
-  nav.toc ol{list-style:none;counter-reset:c;display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;}
-  nav.toc li{counter-increment:c;}
-  nav.toc li a{display:flex;gap:10px;padding:5px 0;font-weight:600;font-size:14px;}
-  nav.toc li a::before{content:counter(c);background:var(--sage-light);color:var(--sage);border-radius:6px;min-width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
-  section.chapter{background:var(--card);border:1px solid var(--sand-border);border-radius:12px;padding:26px 28px;margin-bottom:20px;scroll-margin-top:16px;}
-  section.chapter > h2{font-size:20px;font-weight:800;color:var(--sage);margin-bottom:4px;display:flex;align-items:center;gap:10px;}
-  section.chapter > .lead{color:var(--mid);font-size:14px;margin-bottom:18px;}
-  h3{font-size:16px;font-weight:700;color:var(--ink);margin:22px 0 8px;border-left:3px solid var(--sage);padding-left:10px;}
-  h4{font-size:14px;font-weight:700;color:var(--ink);margin:16px 0 6px;}
-  p{margin-bottom:12px;}
-  ul,ol.steps{margin:0 0 14px 22px;}
-  li{margin-bottom:6px;}
-  ol.steps{counter-reset:s;list-style:none;margin-left:0;}
-  ol.steps > li{counter-increment:s;position:relative;padding-left:34px;margin-bottom:10px;}
-  ol.steps > li::before{content:counter(s);position:absolute;left:0;top:0;background:var(--sage);color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;}
-  .tip{background:var(--sage-pale);border:1px solid var(--sand-border);border-left:4px solid var(--sage);border-radius:8px;padding:12px 16px;margin:14px 0;font-size:14px;}
-  .tip b{color:var(--sage-dark);}
-  .warn{background:var(--amber-light);border:1px solid #f0d49a;border-left:4px solid var(--amber);border-radius:8px;padding:12px 16px;margin:14px 0;font-size:14px;color:#7a5712;}
-  .new{display:inline-block;background:var(--sage);color:#fff;font-size:10px;font-weight:700;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle;letter-spacing:0.04em;}
-  code{background:#eef1f0;border-radius:4px;padding:1px 6px;font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace;}
-  pre{background:#1e2820;color:#dfeae4;border-radius:8px;padding:14px 16px;overflow:auto;font-size:12.5px;line-height:1.6;margin:10px 0;font-family:ui-monospace,Menlo,Consolas,monospace;}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--sand);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px 100px;}
+  header.top{padding:40px 0 26px;border-bottom:3px solid var(--sage);margin-bottom:8px;}
+  header.top h1{font-size:30px;margin:0 0 6px;color:var(--sage-deep);letter-spacing:-0.02em;}
+  header.top .sub{color:var(--mid);font-size:15px;}
+  header.top .ver{display:inline-block;margin-top:12px;background:var(--sagepale);color:var(--sage-deep);font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;}
+  nav.toc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 26px;margin:26px 0 34px;}
+  nav.toc h2{font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--light);margin:0 0 12px;}
+  nav.toc ol{margin:0;padding:0;list-style:none;column-count:2;column-gap:34px;}
+  nav.toc li{margin:0 0 8px;break-inside:avoid;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:600;}
+  nav.toc a:hover{color:var(--sage);}
+  nav.toc a .n{color:var(--sage);font-weight:800;margin-right:8px;}
+  section.ch{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin:0 0 20px;scroll-margin-top:14px;}
+  section.ch h2{font-size:23px;margin:0 0 4px;color:var(--sage-deep);}
+  section.ch .lead{color:var(--mid);font-size:15.5px;margin:0 0 18px;}
+  section.ch h3{font-size:17px;color:var(--ink);margin:26px 0 8px;border-left:3px solid var(--sage);padding-left:11px;}
+  section.ch h4{font-size:14.5px;color:var(--sage-deep);margin:18px 0 4px;font-weight:700;}
+  p{margin:0 0 12px;}
+  b,strong{font-weight:700;}
+  ol.steps{margin:8px 0 16px;padding-left:0;list-style:none;counter-reset:s;}
+  ol.steps li{position:relative;padding:2px 0 11px 42px;counter-increment:s;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:27px;height:27px;background:var(--sage);color:#fff;border-radius:50%;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+  ul.bul{margin:8px 0 14px;padding-left:22px;}
+  ul.bul li{margin:0 0 8px;}
+  ul.bul li b{color:var(--sage-deep);}
+  .tip,.warn,.note{border-radius:12px;padding:13px 16px;margin:15px 0;font-size:14.5px;line-height:1.6;}
+  .tip{background:var(--sagepale);border-left:4px solid var(--sage);}
+  .warn{background:var(--amberbg);border-left:4px solid var(--amber);color:#6b4413;}
+  .note{background:#F3F1EA;border-left:4px solid var(--light);color:var(--mid);}
+  kbd{background:var(--sand);border:1px solid var(--border);border-radius:6px;padding:1px 7px;font-size:13px;font-weight:700;font-family:inherit;color:var(--sage-deep);white-space:nowrap;}
+  .path{background:var(--sand);border:1px solid var(--border);border-radius:6px;padding:1px 8px;font-size:13.5px;font-weight:700;color:var(--sage-deep);white-space:nowrap;}
+  figure.fig{margin:18px 0;background:var(--sand);border:1px solid var(--border);border-radius:14px;padding:16px 16px 10px;}
+  figure.fig svg{display:block;width:100%;height:auto;border-radius:8px;}
+  figure.fig figcaption{font-size:13px;color:var(--mid);margin-top:10px;text-align:center;}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:13px;color:var(--mid);}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .pin{display:inline-flex;width:19px;height:19px;border-radius:50%;background:var(--coral);color:#fff;font-size:11px;font-weight:800;align-items:center;justify-content:center;flex-shrink:0;}
   table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
-  th,td{border:1px solid var(--sand-border);padding:7px 11px;text-align:left;vertical-align:top;}
-  th{background:var(--sage-light);font-weight:700;color:var(--sage-dark);}
-  .pill{display:inline-block;background:var(--sage-light);color:var(--sage-dark);border:1px solid #bcdcd2;border-radius:20px;padding:1px 10px;font-size:12px;font-weight:600;}
-  footer{text-align:center;color:var(--light);font-size:12px;padding:30px 0 0;}
-  .backtop{display:inline-block;margin-top:10px;font-size:12px;color:var(--light);}
-  @media(max-width:640px){nav.toc ol{grid-template-columns:1fr;}}
+  th,td{border:1px solid var(--border);padding:8px 12px;text-align:left;vertical-align:top;}
+  th{background:var(--sagepale);font-weight:700;color:var(--sage-deep);}
+  .backtop{display:block;text-align:right;margin-top:10px;}
+  .backtop a{font-size:12px;color:var(--light);text-decoration:none;}
+  footer{text-align:center;color:var(--light);font-size:13px;margin-top:30px;}
+  @media print{ section.ch,nav.toc{break-inside:avoid;border:1px solid #ddd;} body{background:#fff;font-size:11.5pt;} }
+  @media(max-width:560px){ nav.toc ol{column-count:1;} }
 </style>
 </head>
 <body>
-<header class="hero"><div class="inner">
-  <h1>🌿 Nichola Philbey OT — Dashboard User Guide</h1>
-  <div class="sub">Everything you need to run your practice from one private, secure dashboard.</div>
-  <div class="ver">Updated June 2026 · current build</div>
-</div></header>
-
 <div class="wrap">
 
+<header class="top">
+  <h1>Nichola Philbey OT — User Guide</h1>
+  <div class="sub">A complete, plain-English handbook to running your whole practice from the dashboard — written for someone starting from scratch.</div>
+  <div class="ver">Your handbook · always kept current with the app</div>
+</header>
+
 <nav class="toc">
-  <h2>📋 Contents</h2>
+  <h2>Contents</h2>
   <ol>
-    <li><a href="#whatsnew">What's new — latest update</a></li>
-    <li><a href="#ch1">Getting Started, Security &amp; Backups</a></li>
-    <li><a href="#ch2">The Phrase &amp; Resource Library</a></li>
-    <li><a href="#ch3">Clients &amp; Client Types</a></li>
-    <li><a href="#ch4">Assessments &amp; Reports</a></li>
-    <li><a href="#ch5">Sessions, Notes &amp; the Observation Form</a></li>
-    <li><a href="#ch6">Templates (and how freezing works)</a></li>
-    <li><a href="#ch7">Communications</a></li>
-    <li><a href="#ch8">Finances — Invoices, Mileage, Expenses, Tax</a></li>
-    <li><a href="#ch9">CPD, Supervision &amp; Power Features</a></li>
+    <li><a href="#start"><span class="n">1</span>Starting up &amp; getting around</a></li>
+    <li><a href="#setup"><span class="n">2</span>First-time setup</a></li>
+    <li><a href="#home"><span class="n">3</span>The Home dashboard</a></li>
+    <li><a href="#clients"><span class="n">4</span>Clients &amp; the client record</a></li>
+    <li><a href="#assessment"><span class="n">5</span>Running an assessment</a></li>
+    <li><a href="#ai"><span class="n">6</span>The AI writing assistant</a></li>
+    <li><a href="#reports"><span class="n">7</span>Writing &amp; exporting reports</a></li>
+    <li><a href="#intake"><span class="n">8</span>Intake forms &amp; consent</a></li>
+    <li><a href="#sessions"><span class="n">9</span>Calendar, sessions &amp; notes</a></li>
+    <li><a href="#comms"><span class="n">10</span>The communication log</a></li>
+    <li><a href="#documents"><span class="n">11</span>Documents</a></li>
+    <li><a href="#finances"><span class="n">12</span>Finances: invoices, mileage, expenses &amp; tax</a></li>
+    <li><a href="#library"><span class="n">13</span>The Library</a></li>
+    <li><a href="#focus"><span class="n">14</span>Focus mode</a></li>
+    <li><a href="#templates"><span class="n">15</span>Templates</a></li>
+    <li><a href="#cpd"><span class="n">16</span>CPD &amp; Supervision</a></li>
+    <li><a href="#data"><span class="n">17</span>Your data: safety, sync &amp; backups</a></li>
+    <li><a href="#annie"><span class="n">18</span>Annie, your assistant</a></li>
+    <li><a href="#faq"><span class="n">19</span>Troubleshooting &amp; FAQ</a></li>
   </ol>
 </nav>
 
-<section class="chapter" id="whatsnew">
-<h2>🆕 What's new — latest update</h2>
-<p class="lead">The newest features and important fixes, sitting on top of everything below.</p>
-<ul>
-<li><b>One AI button, with writing styles.</b> Everywhere you used to see separate <b>Draft</b> and <b>Refine</b> buttons there is now a single small <b>sparkle with a little down-arrow (✨▾)</b>. Tap it and choose how to write: <b>Plain</b> (warm, jargon-light — for parents), <b>Balanced</b> (professional but readable — the default) or <b>Clinical</b> (formal — for EHCP panels), or pick <b>Refine</b> to tidy text that's already in the box. It's on every report section, every session-note field (including Additional Notes), the Observation Form, "Draft all fields" and the Templates refine fields. The two document readers stay as their own buttons.</li>
-<li><b>Undo on AI.</b> Straight after any AI draft or refine a small message appears bottom-right with an <b>Undo</b> button (about 14 seconds) that puts the field back exactly as it was. If the AI's version isn't right, one click reverses it.</li>
-<li><b>Plainer writing for parents.</b> If a report reads too clinically, use the <b>Plain</b> style — same meaning, jargon explained in everyday words.</li>
-<li><b>Document categories you can tag.</b> Every file in <b>Documents</b> now has a little category dropdown — Correspondence, Consent &amp; Referral, Reports &amp; Assessments, School &amp; EHCP, Screenshots &amp; Photos, Other. Tag a file and it counts in the tiles at the top, so you can click "School &amp; EHCP" and see everything from school at once. New uploads and session photos are sorted automatically.</li>
-<li><b>Travel on invoices — quoted or calculated.</b> Travel time now bills separately from mileage as its own <b>Travel</b> line. Per invoice you choose a <b>Quoted</b> amount (type the agreed figure — the default) or <b>Calculated</b> (minutes from the journey times × your rate, overridable). No more mismatch between an agreed travel fee and the logged minutes.</li>
-<li><b>Editable reminder emails.</b> The session reminder — and a separate <b>assessment</b> reminder — are now editable under <b>Templates → Emails</b>. When the appointment is an assessment, the assessment wording is used automatically.</li>
-<li><b>Logo toggle on sessions.</b> The "show practice logo on exports" checkbox now also sits next to the Export buttons on a session note (it's the same single global setting).</li>
-<li><b>Secure intake + consent as proof.</b> In <b>Intake</b> you must click <b>Set up secure intake</b> once (there's now a step for it on the Home checklist) so your forms can receive submissions. The two forms behave differently: a <b>questionnaire</b> has <b>Create client</b> (it makes the client record); a <b>consent form</b> has <b>File consent</b> — pick the matching client and it saves a dated <b>Record of Consent</b> PDF into their Documents as legal proof and ticks "Consent form signed".</li>
+<section class="ch" id="start">
+<h2>1 · Starting up &amp; getting around</h2>
+<p class="lead">How to open the dashboard, unlock it, and find your way around. Read this first.</p>
+
+<h3>What the dashboard is</h3>
+<p>The dashboard is your entire practice in one private window: clients, assessments, reports, sessions, invoices, documents and more. It runs in your web browser at <span class="path">app.npot.co.uk</span>. Everything you type is saved automatically and encrypted, so only you can read it.</p>
+
+<h3>Opening it and unlocking</h3>
+<ol class="steps">
+<li>Go to <span class="path">app.npot.co.uk</span> in your browser (Chrome, Safari or Edge are all fine). It's worth bookmarking it.</li>
+<li>The first time ever, you'll be asked to <b>create a master password</b>. Choose something only you know — this password is what encrypts your data. Write it down somewhere safe; nobody, not even support, can recover it for you.</li>
+<li>Every time after that, you'll see an <b>unlock</b> screen. Type your master password and press Enter to open your dashboard.</li>
+</ol>
+<div class="warn"><b>Your master password cannot be reset.</b> If you forget it, your data can only be recovered with a <b>recovery key</b> (we set this up in Chapter 2). Please do that step — it's your safety net.</div>
+
+<h3>The layout</h3>
+<figure class="fig">
+<svg viewBox="0 0 760 384" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The dashboard layout: a left sidebar menu, a green top bar with search, and the main working area.">
+  <rect x="1" y="1" width="758" height="382" rx="10" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <path d="M1 11 a10 10 0 0 1 10 -10 h738 a10 10 0 0 1 10 10 v35 h-758 z" fill="#4A7C6F"/>
+  <circle cx="38" cy="24" r="13" fill="#3C6457"/>
+  <text x="60" y="29" fill="#fff" font-size="13" font-weight="700" font-family="Arial">Nichola Philbey</text>
+  <rect x="250" y="13" width="232" height="22" rx="11" fill="#FFFFFF" opacity="0.22"/>
+  <text x="266" y="28" fill="#EAF2EE" font-size="11" font-family="Arial">Search everything…</text>
+  <rect x="556" y="12" width="64" height="22" rx="11" fill="#FFFFFF" opacity="0.2"/>
+  <text x="566" y="27" fill="#fff" font-size="11" font-family="Arial">⏱ 12:04</text>
+  <circle cx="652" cy="24" r="11" fill="#FFFFFF" opacity="0.18"/>
+  <circle cx="688" cy="24" r="11" fill="#FFFFFF" opacity="0.18"/>
+  <circle cx="724" cy="24" r="11" fill="#FFFFFF" opacity="0.18"/>
+  <rect x="1" y="46" width="168" height="337" fill="#FBFAF7"/>
+  <line x1="169" y1="46" x2="169" y2="383" stroke="#E4E0D6"/>
+  <g font-family="Arial" font-size="12" fill="#5C6B62">
+    <rect x="12" y="60" width="146" height="26" rx="7" fill="#ECF2EE"/>
+    <text x="28" y="77" fill="#2E5248" font-weight="700">Home</text>
+    <text x="28" y="108">Clients</text><text x="28" y="136">Calendar</text>
+    <text x="28" y="164">Sessions</text><text x="28" y="192">Comms</text>
+    <text x="28" y="220">Intake</text><text x="28" y="248">Documents</text>
+    <text x="28" y="276">Finances</text><text x="28" y="304">Focus</text>
+    <text x="28" y="332">Library</text><text x="28" y="360">Templates</text>
+  </g>
+  <rect x="192" y="66" width="544" height="58" rx="9" fill="#F6F4EE"/>
+  <text x="208" y="91" font-family="Arial" font-size="14" font-weight="700" fill="#2C3A33">Today's work</text>
+  <text x="208" y="110" font-family="Arial" font-size="11" fill="#8A968D">your overview appears here</text>
+  <rect x="192" y="138" width="264" height="100" rx="9" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <rect x="472" y="138" width="264" height="100" rx="9" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <rect x="192" y="252" width="544" height="112" rx="9" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <circle cx="20" cy="24" r="11" fill="#C75A3B"/><text x="20" y="28" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">1</text>
+  <circle cx="366" cy="24" r="11" fill="#C75A3B"/><text x="366" y="28" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">2</text>
+  <circle cx="588" cy="24" r="11" fill="#C75A3B"/><text x="588" y="28" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">3</text>
+  <circle cx="150" cy="73" r="11" fill="#C75A3B"/><text x="150" y="77" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">4</text>
+</svg>
+<figcaption>The same frame surrounds every screen.</figcaption>
+<div class="legend">
+  <span><span class="pin">1</span>Menu button — on a phone, tap it to open the sidebar</span>
+  <span><span class="pin">2</span>Search everything</span>
+  <span><span class="pin">3</span>Quick actions &amp; status (a ⏱ pill shows when a Focus timer runs)</span>
+  <span><span class="pin">4</span>The sidebar — tap any item to switch area</span>
+</div>
+</figure>
+<p>There are three parts to every screen:</p>
+<ul class="bul">
+<li><b>The sidebar (left)</b> is your main menu — Home, Clients, Calendar, Sessions, Comms, Intake, Documents, Finances, Focus, CPD, Supervision, Library, Templates and User Guide. On a computer it's always there; on a phone, tap the <b>menu button</b> (top-left) to slide it out.</li>
+<li><b>The top bar (green)</b> holds <b>Search everything</b>, the notifications <b>🔔 bell</b>, display options, and a <b>cloud-sync</b> status. When a Focus timer is running, a <b>⏱ pill</b> appears here too.</li>
+<li><b>The main area</b> is where you actually work — it changes depending on which sidebar item you've chosen.</li>
 </ul>
-<div class="warn"><b>Your data is better protected now.</b> If a different or older copy of your data is ever found in the cloud when you log in, the dashboard no longer silently replaces what's on your device — it keeps your data and asks first. A background sync can no longer wipe your records. You can still deliberately restore an earlier version from <b>Backups</b> whenever you want.</div>
-</section>
 
-<section class="chapter">
-<h2>✨ New in v84</h2>
-<p class="lead"><b>v84</b> — the report preview, PDF and Word now all generate from one shared engine, so the three versions always match exactly. As part of that, the "Assessment Process" section now names only the assessments actually carried out for that child (rather than a fixed list). Everything below still applies:</p>
-<p style="font-weight:700;color:var(--sage);margin:2px 0 6px;">Latest additions</p>
-<ul>
-<li><b>Contents page on every report.</b> Reports now open with a numbered <b>Contents</b> list (cover → Contents → first section). It's built automatically from the sections that actually print, so if you switch a section off it drops out of the contents and the rest renumber — the numbering can never get out of step. It shows in Preview, PDF and Word.</li>
-<li><b>Six new Marie report sections.</b> Marie reports can now include <b>Postural Management &amp; Equipment</b> (after Self-Care) plus five functional domains grouped after Sensory Processing — <b>Sleep, Communication, Cognition, Mood &amp; Behaviour, Social &amp; Relationships</b>. You edit them in the client's <b>Marie Report</b> tab; each has its own include/exclude toggle and its own <b>💬 Phrases</b> set, and they only appear on Marie reports when they have text.</li>
-<li><b>Word export for the money documents.</b> The <b>Travel log</b> and <b>Expenses</b> now each have <b>⬇ PDF</b> and <b>⬇ Word</b> (period-aware), and the <b>Invoice</b> preview has a new <b>Word</b> button beside Download PDF. So every financial document exports to CSV, PDF and Word.</li>
-<li><b>One consistent look across all documents.</b> Invoices, the CPD log and supervision records now use the same logo-top-left header as your reports (the old green banners are gone). The include/exclude-logo toggle applies to them too.</li>
-<li><b>Gentle "next step" prompts.</b> After you book a session you'll see a <b>Write the note</b> button; after saving a note, <b>Log the journey</b>; after marking an invoice paid, <b>Next unpaid →</b>. They're optional — ignore them and they fade away.</li>
-<li><b>First-run setup checklist.</b> On the Home screen a card walks you through getting ready (recovery key, profile, practice details, bank details, first client). Because your details are pre-filled it's a quick <i>review-and-confirm</i> with "Looks right" ticks, and it hides itself once done.</li>
+<h3>Two things that are true everywhere</h3>
+<ul class="bul">
+<li><b>Everything saves itself.</b> There are no Save buttons. As you type, a small <i>Saving… / Saved</i> note appears in the top bar. You can close the tab any time and your work is there when you come back.</li>
+<li><b>Search jumps you anywhere.</b> Click <b>Search everything</b> (or press <kbd>⌘K</kbd> on a Mac / <kbd>Ctrl K</kbd> on Windows) and start typing a client name, an invoice number or a document — it takes you straight there.</li>
 </ul>
-<p style="font-weight:700;color:var(--sage);margin:10px 0 6px;">Earlier in v84</p>
-<ul>
-<li><b>Multiple assessments per child.</b> A client can hold several dated assessments over time. On the client's record there's an <b>Assessments</b> card — each has an editable label ("Initial", "Annual review") and a date, an <b>Open</b> button, and its own <b>PDF / Word</b> export. <b>➕ New assessment</b> starts a fresh blank one and safely files the current one away — nothing is overwritten. The Assessment tab shows the same dated selector at the top.</li>
-<li><b>Start an assessment on a pre-assessed referral.</b> If a treatment-only child later needs assessing, a <b>➕ Start an assessment</b> button turns it into a full assessment; the uploaded external report stays in Documents.</li>
-<li><b>Services &amp; prices (invoicing).</b> Profile &amp; Settings → Bank Details has a <b>Services &amp; prices</b> list — each entry is <i>per hour</i> or <i>flat fee</i> with a price, and fills in automatically on invoice lines (still editable per invoice). Defaults: £60/hr, £25/hr travel, 45p/mile, £480 Motor co-ordination assessment.</li>
-<li><b>Cloud sync health &amp; two-device safety.</b> The Cloud Sync tab now shows <b>"Last synced …"</b> and warns if sync has failed repeatedly (for example a paused free Supabase project). When you unlock on a second device, if the cloud holds a newer backup it offers to restore it before anything is overwritten.</li>
-<li><b>Reports read identically</b> across Preview, PDF and Word — including the red / amber / green score key, now shown in all three. (Under the bonnet, all three exports now build from a single shared "report model", so they can never drift apart again.)</li>
-<li><b>CSV export</b> on Invoices and Expenses — a <b>⬇ CSV</b> button downloads a spreadsheet-ready file you can open in Excel or Numbers (handy for your accountant).</li>
-<li><b>CPD log as a PDF</b> — the CPD page has <b>⬇ Export PDF</b>, producing a tidy log of every entry, your reflections and total hours, ready for an HCPC audit.</li>
-<li><b>Storage meter</b> in Documents — shows how much of this device's space the dashboard is using, and warns as it fills, so large uploads don't catch you out.</li>
-<li><b>Permanent client deletion (GDPR erasure)</b> — for a discharged client you can now erase the record entirely. It downloads a full backup first and makes you type DELETE to confirm.</li>
-<li><b>Smaller touches</b> — the header shows a live <b>sync status</b> pill; invoice PDFs say <i>"Payment is kindly requested by &lt;due date&gt;"</i> when a due date is set; and if you start typing a note then click away, the dashboard asks before discarding unsaved changes.</li>
+<div class="tip"><b>Test version vs your real data:</b> if you ever see an <b>orange banner</b> at the top saying "TEST VERSION", you're in a safe practice copy with made-up sample clients — perfect for trying things out. Your real, private records are in the normal (no-banner) version.</div>
+<div class="backtop"><a href="#start">↑ contents</a></div>
+</section>
+
+<section class="ch" id="setup">
+<h2>2 · First-time setup</h2>
+<p class="lead">Do these once and the whole dashboard works smoothly. Home shows a <b>“Set up your practice”</b> checklist that walks you through the same steps — tick each off as you go.</p>
+
+<h3>Step 1 — Save a recovery key (most important)</h3>
+<p>Your recovery key is the only way back in if you forget your master password. Set it up now.</p>
+<ol class="steps">
+<li>Click your <b>profile</b> (top-right), then <span class="path">Settings → Security</span>. (Or click <b>Set up recovery key</b> on the yellow banner if it's showing.)</li>
+<li>Choose <b>Generate recovery key</b>. A long code appears.</li>
+<li><b>Save it somewhere safe and separate from your password</b> — print it, or store it in a password manager. Treat it like a spare front-door key.</li>
+</ol>
+<div class="warn"><b>Without a recovery key, a forgotten master password means your data is gone for good.</b> This one step is your insurance — please don't skip it.</div>
+
+<h3>Step 2 — Your profile &amp; practice details</h3>
+<p>This is the information that prints on your reports, letters and invoices.</p>
+<ol class="steps">
+<li>Open <span class="path">Settings → Personal</span> and fill in your <b>full name, professional credentials, HCPC number</b> and a short <b>bio / CV</b> (the bio appears as the author section on Marie reports).</li>
+<li>Open <span class="path">Settings → Practice</span> and add your <b>practice name, email, phone</b> and upload your <b>logo</b> if you have one. The logo appears top-left on every document.</li>
+</ol>
+
+<h3>Step 3 — Bank details, services &amp; prices</h3>
+<p>This makes invoicing almost automatic.</p>
+<ol class="steps">
+<li>Open <span class="path">Settings → Bank Details</span> and enter the <b>account name, sort code and account number</b> that should appear on invoices.</li>
+<li>In the same place, build your <b>Services &amp; prices</b> list. Each entry is either <b>per hour</b> or a <b>flat fee</b>, with a price — for example “Therapy £60/hr”, “Travel £25/hr”, “Mileage 45p/mile”, “Motor co-ordination assessment £480”. These fill in automatically on invoices later (and you can still change them per invoice).</li>
+</ol>
+
+<h3>Step 4 — Turn on Cloud Sync (your off-device backup)</h3>
+<p>Cloud sync keeps an encrypted copy of your data in the cloud and a history you can roll back to.</p>
+<ol class="steps">
+<li>Open <span class="path">Settings → Cloud Sync</span>. The web address and key are usually pre-filled.</li>
+<li>Click <b>Connect &amp; Test</b>. You're looking for a green <b>“Cloud synced”</b> confirmation. From then on it syncs quietly in the background.</li>
+</ol>
+<div class="note">Your data is encrypted <i>before</i> it's uploaded — the cloud only ever holds a scrambled copy that only your password can open.</div>
+
+<h3>Step 5 — Set up secure intake (so online forms work)</h3>
+<p>Do this once so parents and clients can send you completed forms.</p>
+<ol class="steps">
+<li>Open the <b>Intake</b> tab (or the checklist step on Home).</li>
+<li>Click <b>Set up secure intake</b>. That's it — your forms can now receive submissions. (Skip this and people filling in your form will see a “not set up to receive submissions” message.)</li>
+</ol>
+
+<h3>Step 6 — Add the AI key (optional, but powers the ✨ assistant)</h3>
+<p>The sparkle writing assistant and Annie need an Anthropic API key, stored only on your device.</p>
+<ol class="steps">
+<li>Open <b>Annie</b> (the floating ✨ button, bottom-right) and follow the prompt to paste your key, or add it under <span class="path">Settings</span>.</li>
+<li>One key powers everything — Annie's chat and all the ✨ Draft/Refine buttons.</li>
+</ol>
+<div class="tip">When all six are done, the <b>“Set up your practice”</b> card on Home tidies itself away. There's also a cheeky “Celebrate your new app” tick to finish on — go on, you've earned it.</div>
+<div class="backtop"><a href="#setup">↑ contents</a></div>
+</section>
+
+<section class="ch" id="home">
+<h2>3 · The Home dashboard</h2>
+<p class="lead">Your landing page — a glance tells you what needs doing today.</p>
+<p>Home pulls the important things to the front so nothing gets lost. From top to bottom you'll typically see:</p>
+<ul class="bul">
+<li><b>Today's sessions</b> — anyone you're seeing today, with a quick way into their note.</li>
+<li><b>Quick-stat tiles</b> — <b>Active Clients</b>, <b>Sessions This Week</b>, <b>Reports Pending</b> and <b>Unpaid Invoices</b>. Each tile is clickable and takes you to that list.</li>
+<li><b>Reminders &amp; to-dos</b> — a card gathering follow-ups that are due, upcoming assessment/EHCP deadlines, and anything you've flagged. Overdue items are highlighted.</li>
+<li><b>“Set up your practice” checklist</b> — only on a fresh setup (see Chapter 2). It hides once you've finished or dismissed it.</li>
 </ul>
+<h4>How to use it day to day</h4>
+<ol class="steps">
+<li>Open the dashboard each morning on <b>Home</b> — scan today's sessions and the reminders card.</li>
+<li>Click a <b>tile</b> (e.g. “3 Unpaid Invoices”) to jump straight to what needs action.</li>
+<li>Clear a follow-up by opening it, doing the task, and marking it done — it drops off the list.</li>
+</ol>
+<div class="tip">The notifications <b>🔔 bell</b> in the top bar mirrors the same reminders, so you'll spot overdue follow-ups from any screen, not just Home.</div>
+<div class="backtop"><a href="#home">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH1 ───────────────────────── -->
-<section class="chapter" id="ch1">
-  <h2>🚀 1 · Getting Started, Security &amp; Backups</h2>
-  <p class="lead">The dashboard is a single secure file that runs in your web browser. All your data lives on your own computer — nothing is sent anywhere unless you choose to set up cloud backup.</p>
+<section class="ch" id="clients">
+<h2>4 · Clients &amp; the client record</h2>
+<p class="lead">Your caseload, and a complete record for each person in one place.</p>
 
-  <h3>Opening the dashboard &amp; your master password</h3>
-  <p>Open the dashboard file in your browser (bookmark it so it's always one click away). The first time, you'll set a <b>master password</b>. Everything you save is encrypted with it, so only you can open your data.</p>
-  <ol class="steps">
-    <li>First run: choose a master password you'll remember. This encrypts all your data.</li>
-    <li>Every time after: type your password to unlock.</li>
-    <li>Use the <b>Lock</b> button (shield icon, top-right) to lock the dashboard when you step away.</li>
-  </ol>
-  <h3>Quick unlock — PIN or Windows Hello <span class="new">v84</span></h3>
-  <p>Typing your full master password every time gets tedious. On the lock screen you can optionally set up a faster unlock for this device:</p>
-  <ul>
-    <li><b>Quick PIN</b> — choose a short PIN to unlock on this computer. Your master password still works and is still what protects the data.</li>
-    <li><b>Windows Hello</b> — if your laptop supports it (fingerprint or face), you can unlock with that instead.</li>
-  </ul>
-  <p>These are conveniences tied to this device only — they don't replace your master password, and they never travel with the file. If you move to a new computer, you unlock with the master password and can set up a quick PIN there too.</p>
+<h3>The client list</h3>
+<p>Open <b>Clients</b> from the sidebar to see everyone. There's a <b>Waitlist</b> tab for referrals you've received but not yet started. You can search and filter the list, and each row shows a status (e.g. Active, Being assessed, Discharged).</p>
 
-  <h3>Recovery key <span class="new">IMPORTANT</span></h3>
-  <div class="warn"><b>Set up a recovery key before you do anything else.</b> Your data is encrypted with your master password. If you forget that password and have no recovery key, your data <em>cannot</em> be recovered — not by anyone. The recovery key is your safety net.</div>
-  <ol class="steps">
-    <li>Go to <b>Profile &amp; Settings → Security</b>.</li>
-    <li>Click <b>Generate recovery key</b>.</li>
-    <li>Write the key down and keep it somewhere safe and separate from your laptop (not in the same notes app).</li>
-  </ol>
+<h4>How to add a new client</h4>
+<ol class="steps">
+<li>In <b>Clients</b>, click <b>+ New client</b> (or <b>Add to waitlist</b> for a referral you're not starting yet).</li>
+<li>Fill in their details — name, date of birth, contact, referral information. Only the name is essential to start; you can add the rest later.</li>
+<li>Save. The new client opens straight into their record.</li>
+</ol>
+<div class="tip"><b>📄 Import an existing report:</b> if you already have a report (PDF or a photo of one), click <b>Import</b> on the client list. The AI reads it and pre-fills a new client record for you to check and save — a big time-saver when taking on someone already assessed elsewhere.</div>
 
-  <h3>Backups — three layers</h3>
-  <table>
-    <tr><th>Method</th><th>Where</th><th>Notes</th></tr>
-    <tr><td>Manual JSON export/import</td><td>Download/Upload buttons in the header</td><td>A complete file you can store anywhere. Import to restore.</td></tr>
-    <tr><td>☁ OneDrive backup</td><td>Profile &amp; Settings → ☁ OneDrive</td><td>Auto-save (30s after a change), daily snapshots, and manual backups to your Microsoft 365 OneDrive.</td></tr>
-    <tr><td>☁ Cloud Sync (Supabase)</td><td>Profile &amp; Settings → ☁ Cloud Sync</td><td>Encrypted backup that persists across devices and browser clears. See below.</td></tr>
-  </table>
-
-  <h3>Setting up Cloud Sync (Supabase) <span class="new">v79</span></h3>
-  <p>Cloud Sync keeps an encrypted copy of your whole dashboard in a free Supabase project. Your data is <b>encrypted on your device before it is sent</b>, so Supabase only ever stores scrambled text — no readable client information ever leaves your computer.</p>
-  <div class="warn">Set up your <b>recovery key first</b> (above). Because the cloud copy is encrypted with your master password, a forgotten password means the cloud backup is unrecoverable too.</div>
-  <ol class="steps">
-    <li>Create a free project at <a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a>.</li>
-    <li>In Supabase's <b>SQL Editor</b>, run the snippet shown on the Cloud Sync tab — it creates the table <em>and</em> turns on Row-Level Security:
-      <pre>create table ot_data (id text primary key, payload jsonb, updated_at timestamptz default now());
-alter table ot_data enable row level security;
-create policy "anon owns the single backup row"
-  on ot_data for all to anon
-  using (id = 'main') with check (id = 'main');</pre>
-    </li>
-    <li>In Supabase: <b>Project Settings → API</b> — copy your <b>Project URL</b> and <b>anon/public key</b>.</li>
-    <li>In the dashboard: <b>Profile &amp; Settings → ☁ Cloud Sync</b> — paste both and click <b>Connect &amp; Test</b>.</li>
-    <li>After that it syncs automatically on every save. Use <b>Restore from cloud backup</b> if you ever need to pull it back.</li>
-  </ol>
-  <div class="tip"><b>How safe is it?</b> The encryption protects your data, not Supabase's settings — that's why the recovery key matters. Cloud Sync is best as a backup from one main device (it saves the whole dataset each time, so the most recent save wins).</div>
-
-  <h3>Getting around</h3>
-  <p>The left sidebar is your main menu. The top bar has <b>global search</b> (press <code>⌘K</code> / <code>Ctrl+K</code>), the notifications bell, font-size (<b>Aa</b>), dark mode, and the lock button.</p>
-  <a class="backtop" href="#ch1">↑ top</a>
+<h3>Inside a client's record</h3>
+<p>Tapping a client opens their record, where the tabs are grouped into five areas — <b>Overview, Clinical, Progress, Communication</b> and <b>Admin</b>:</p>
+<table>
+<tr><th>Tab</th><th>What it's for</th></tr>
+<tr><td><b>Overview</b></td><td>A summary of the person, plus a <b>Scores</b> button that opens a read-only view of every completed test (each row links back to its place in the Assessment tab).</td></tr>
+<tr><td><b>Assessment</b></td><td>The single hub for all assessment data <i>and</i> the report's written sections (Chapter 5).</td></tr>
+<tr><td><b>Checklist</b></td><td>A workflow tracker grouped into phases (Intake, Assessment, Report Writing…) — ticks things like consent signed, referral received, questionnaire sent.</td></tr>
+<tr><td><b>Goals</b></td><td>SMART goals with review dates; mark them achieved as you go.</td></tr>
+<tr><td><b>Sessions</b></td><td>Session cards and notes for this person; you can edit a session's date, type, time, duration or location here without leaving the record.</td></tr>
+<tr><td><b>Comms</b></td><td>Calls, emails and letters logged for this person.</td></tr>
+<tr><td><b>Documents</b></td><td>Upload and view this person's files.</td></tr>
+<tr><td><b>Timeline</b></td><td>One chronological history — sessions, comms, goals and documents together in date order.</td></tr>
+<tr><td><b>Sticky Note</b></td><td>A private scratchpad for this person, kept away from the clinical notes.</td></tr>
+<tr><td><b>Clinical Notes</b></td><td>General clinical notes (parent/carer observations, referral info), separate from the per-session notes.</td></tr>
+<tr><td><b>Export</b></td><td>One unified report export — PDF, Word, or Print/Preview (Chapter 7).</td></tr>
+</table>
+<div class="tip">A treatment-only client who later needs assessing? Open their record and use <b>➕ Start an assessment</b> — it turns the record into a full assessment and keeps any imported report in their Documents.</div>
+<div class="backtop"><a href="#clients">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH2 ───────────────────────── -->
-<section class="chapter" id="ch2">
-  <h2>📚 2 · The Phrase &amp; Resource Library</h2>
-  <p class="lead">Your Library (sidebar) holds re-usable clinical phrases and a picture resource catalogue, so you're never writing the same sentence twice.</p>
-  <h3>Phrases</h3>
-  <ul>
-    <li><b>Standard phrases</b> — grouped clinical sentences you can drop into any report or note.</li>
-    <li><b>Saved phrases</b> — your own favourites; add new ones as you go.</li>
-    <li><b>Sentence builder</b> — assemble a sentence from parts where useful.</li>
-  </ul>
-  <h3>Resource Library (picture cards)</h3>
-  <p>A catalogue of equipment and resources (handwriting aids, seating, sensory tools, etc.) with images, costs and suppliers. This is the single source for the <b>Resources Appendix</b> that can be attached to a report — choose a child's resources here.</p>
-  <a class="backtop" href="#ch2">↑ top</a>
+<section class="ch" id="assessment">
+<h2>5 · Running an assessment</h2>
+<p class="lead">The <b>Assessment</b> tab is the heart of the dashboard — every score and every line of the report live here together, so nothing is ever typed twice.</p>
+<figure class="fig">
+<svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Assessment tab: test pills along the top, a section list on the left, and a score grid beside its narrative box with a sparkle AI button.">
+  <rect x="1" y="1" width="758" height="358" rx="10" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <text x="22" y="34" font-family="Arial" font-size="15" font-weight="800" fill="#2E5248">Assessment</text>
+  <g font-family="Arial" font-size="11">
+    <rect x="22" y="48" width="92" height="24" rx="12" fill="#4A7C6F"/><text x="34" y="64" fill="#fff" font-weight="700">MABC-2 ✓</text>
+    <rect x="120" y="48" width="74" height="24" rx="12" fill="#ECF2EE"/><text x="132" y="64" fill="#2E5248">VMI</text>
+    <rect x="200" y="48" width="78" height="24" rx="12" fill="#ECF2EE"/><text x="212" y="64" fill="#2E5248">SPM-2</text>
+    <rect x="284" y="48" width="96" height="24" rx="12" fill="#ECF2EE"/><text x="296" y="64" fill="#2E5248">+ add test</text>
+  </g>
+  <rect x="22" y="86" width="150" height="252" rx="9" fill="#FBFAF7" stroke="#E4E0D6"/>
+  <g font-family="Arial" font-size="11" fill="#5C6B62">
+    <rect x="30" y="94" width="134" height="22" rx="6" fill="#ECF2EE"/><text x="40" y="109" fill="#2E5248" font-weight="700">Background</text>
+    <text x="40" y="138">Test results</text><text x="40" y="164">Observation</text>
+    <text x="40" y="190">Summary</text><text x="40" y="216">Outcomes</text>
+    <text x="40" y="242">Provision</text><text x="40" y="268">Appendix</text>
+  </g>
+  <rect x="186" y="86" width="552" height="120" rx="9" fill="#F6F4EE" stroke="#E4E0D6"/>
+  <text x="200" y="110" font-family="Arial" font-size="12" font-weight="700" fill="#2C3A33">Score grid (auto-interpreted)</text>
+  <rect x="200" y="122" width="150" height="20" rx="5" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <rect x="356" y="122" width="60" height="20" rx="5" fill="#E7F1EA"/><text x="368" y="137" font-family="Arial" font-size="10" fill="#2E5248">Typical</text>
+  <rect x="200" y="148" width="150" height="20" rx="5" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <rect x="356" y="148" width="60" height="20" rx="5" fill="#FBE9E2"/><text x="364" y="163" font-family="Arial" font-size="10" fill="#9A3B22">Below</text>
+  <rect x="186" y="218" width="552" height="120" rx="9" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <text x="200" y="242" font-family="Arial" font-size="12" font-weight="700" fill="#2C3A33">Clinical narrative</text>
+  <rect x="560" y="228" width="74" height="24" rx="12" fill="#FFFFFF" stroke="#4A7C6F"/><text x="574" y="244" font-family="Arial" font-size="13" fill="#4A7C6F">✨ ▾</text>
+  <rect x="642" y="228" width="86" height="24" rx="6" fill="#ECF2EE"/><text x="652" y="244" font-family="Arial" font-size="10" fill="#2E5248">In report ✓</text>
+  <line x1="200" y1="266" x2="724" y2="266" stroke="#EDEAE0"/><line x1="200" y1="288" x2="724" y2="288" stroke="#EDEAE0"/><line x1="200" y1="310" x2="600" y2="310" stroke="#EDEAE0"/>
+  <circle cx="380" cy="60" r="11" fill="#C75A3B"/><text x="380" y="64" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">1</text>
+  <circle cx="97" cy="105" r="11" fill="#C75A3B"/><text x="97" y="109" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">2</text>
+  <circle cx="597" cy="240" r="11" fill="#C75A3B"/><text x="597" y="244" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">3</text>
+  <circle cx="685" cy="240" r="11" fill="#C75A3B"/><text x="685" y="244" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">4</text>
+</svg>
+<figcaption>Scores and the report narrative sit side by side, section by section.</figcaption>
+<div class="legend">
+  <span><span class="pin">1</span>“Assessments included” pills</span>
+  <span><span class="pin">2</span>The section list (report order)</span>
+  <span><span class="pin">3</span>The ✨ AI button on each narrative</span>
+  <span><span class="pin">4</span>“In report / Not needed” toggle</span>
+</div>
+</figure>
+
+<h3>How an assessment fits together</h3>
+<p>Open a client's <b>Assessment</b> tab. It opens on an Introduction section, then flows in the exact order the report prints: Introduction → Background → the test sections → Summary → Outcomes → Provision → Previous Results → Resources Appendix. Use the section list on the left to jump between them.</p>
+
+<h4>Step 1 — Choose which tests this child had</h4>
+<ol class="steps">
+<li>At the top you'll see <b>“Assessments included”</b> pills. Tap a pill to switch a test on or off for this child.</li>
+<li>Add as many as apply — <b>MABC-2, BOT-2, VMI, SPM-2, COPM, Sensory Profile</b>, the <b>🧸 Observation</b> (pre-filled from your Observation Form template), and a free-form <b>Ad-hoc</b> section. Several can be active at once.</li>
+<li>Only the tests you've switched on will appear in the report and the score summary — nothing empty ever prints.</li>
+</ol>
+
+<h4>Step 2 — Enter the scores</h4>
+<ol class="steps">
+<li>Go to a test's section. Type the raw/standard scores into its <b>score grid</b>.</li>
+<li>The grid <b>auto-interprets</b> — colouring each result red, amber or green and showing the band — so you can see the picture at a glance. Its pre-written intro text appears inline above it.</li>
+</ol>
+
+<h4>Step 3 — Write the clinical narrative</h4>
+<ol class="steps">
+<li>Beside (or below) each score grid is a <b>narrative box</b> — your clinical interpretation in words.</li>
+<li>Type it yourself, drop in ready-made wording from the <b>💬 Phrases</b> button, or tap the <b>✨ sparkle</b> to draft it for you (Chapter 6).</li>
+<li>Repeat for Background (Reason for Referral, Developmental &amp; Medical History, Observations), Summary (Clinical Interpretation, Functional Impact, Recommendations &amp; Goals, Summary of OT Needs), and the rest.</li>
+</ol>
+
+<h4>Step 4 — Decide what goes in the report</h4>
+<p>Every single field has an <b>“In report / Not needed”</b> toggle. Switch a field to <b>Not needed</b> and it's excluded from this child's report (and the contents page renumbers itself). It only affects this child — your templates are untouched.</p>
+
+<h3>Standard vs Marie (EHCP) reports</h3>
+<p>A child can be on the <b>standard</b> format or the <b>Marie / EHCP</b> format. Marie adds six extra sections — <b>Postural Management &amp; Equipment, Sleep, Communication, Cognition, Mood &amp; Behaviour</b> and <b>Social &amp; Relationships</b> — each with its own toggle and its own phrase set. They appear only on Marie reports, and only when they contain text. There's a button in the Assessment tab to switch a child between the two formats; your text is kept either way.</p>
+
+<h3>More than one assessment over time</h3>
+<p>A child can hold several dated assessments (an Initial, then an Annual Review, and so on). The Overview lists them, each with its own export. Choosing <b>➕ New assessment</b> safely files the current one away and starts a fresh blank one — nothing is ever overwritten.</p>
+<div class="tip"><b>Nothing to save.</b> The Assessment tab autosaves constantly — you'll see <i>Saving / Saved</i> in the top bar. There are no Save buttons anywhere.</div>
+<div class="backtop"><a href="#assessment">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH3 ───────────────────────── -->
-<section class="chapter" id="ch3">
-  <h2>👤 3 · Clients &amp; Client Types</h2>
-  <p class="lead">The Clients tab is your caseload. Click any client to open their full record (Overview, Assessment, Sessions, Communication, Documents and more).</p>
+<section class="ch" id="ai">
+<h2>6 · The AI writing assistant</h2>
+<p class="lead">The little <b>✨ sparkle</b> drafts and polishes your clinical writing in seconds — in your voice, and it never invents scores.</p>
+<figure class="fig">
+<svg viewBox="0 0 620 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The sparkle AI button and its writing-style menu: Plain, Balanced, Clinical, and Refine, with an undo button to its left.">
+  <rect x="1" y="1" width="618" height="248" rx="10" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <rect x="24" y="24" width="572" height="78" rx="9" fill="#F6F4EE" stroke="#E4E0D6"/>
+  <text x="40" y="50" font-family="Arial" font-size="12" fill="#8A968D">…engaged well with the fine-motor tasks, showing a mature…</text>
+  <line x1="40" y1="68" x2="560" y2="68" stroke="#EDEAE0"/><line x1="40" y1="86" x2="430" y2="86" stroke="#EDEAE0"/>
+  <rect x="430" y="118" width="34" height="26" rx="13" fill="#FFFFFF" stroke="#E4E0D6"/><text x="447" y="135" text-anchor="middle" font-family="Arial" font-size="14" fill="#5C6B62">↶</text>
+  <rect x="472" y="118" width="60" height="26" rx="13" fill="#FFFFFF" stroke="#4A7C6F"/><text x="490" y="135" font-family="Arial" font-size="13" fill="#4A7C6F">✨</text>
+  <line x1="514" y1="121" x2="514" y2="141" stroke="#4A7C6F" opacity="0.4"/><text x="519" y="135" font-family="Arial" font-size="11" fill="#4A7C6F">▾</text>
+  <rect x="404" y="150" width="184" height="86" rx="9" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <g font-family="Arial" font-size="11">
+    <text x="416" y="170" fill="#2C3A33" font-weight="700">Plain</text><text x="556" y="170" fill="#8A968D" text-anchor="end">parents</text>
+    <text x="416" y="190" fill="#2E5248" font-weight="700">Balanced</text><text x="556" y="190" fill="#8A968D" text-anchor="end">default</text>
+    <text x="416" y="210" fill="#2C3A33" font-weight="700">Clinical</text><text x="556" y="210" fill="#8A968D" text-anchor="end">formal</text>
+    <line x1="414" y1="218" x2="578" y2="218" stroke="#EDEAE0"/>
+    <text x="416" y="231" fill="#4A7C6F" font-weight="700">✨ Refine existing text</text>
+  </g>
+  <circle cx="447" cy="131" r="10" fill="#C75A3B"/><text x="447" y="135" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="Arial">1</text>
+  <circle cx="490" cy="131" r="10" fill="#C75A3B"/><text x="490" y="135" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="Arial">2</text>
+  <circle cx="519" cy="131" r="10" fill="#C75A3B"/><text x="519" y="135" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="Arial">3</text>
+</svg>
+<figcaption>Tap ✨ for an instant draft; tap ▾ to pick a writing style or refine.</figcaption>
+<div class="legend">
+  <span><span class="pin">1</span>↶ Undo — appears after AI runs</span>
+  <span><span class="pin">2</span>✨ — one tap drafts in the Balanced style</span>
+  <span><span class="pin">3</span>▾ — pick a style, or Refine what's there</span>
+</div>
+</figure>
 
-  <h3>The Waitlist</h3>
-  <p>Not every referral is ready to start. The Clients page has a <b>Waitlist</b> tab for enquiries and referrals you haven't begun yet — so they're tracked without cluttering your active caseload. Add a waitlist entry with the child's details and the referral reason; when you're ready to take them on, convert the entry into a full client. Waitlisted children don't appear in your active client counts or reports until they're started.</p>
+<h4>How to draft a section</h4>
+<ol class="steps">
+<li>Put a few notes in the box first if you can — the more you give it, the more it has to work with. (It can also draft from the scores and other sections you've filled in.)</li>
+<li><b>Tap the ✨</b> for an instant draft in the <b>Balanced</b> style.</li>
+<li>Prefer a different tone? <b>Tap the ▾</b> next to it and choose a style, or <b>Refine</b> to tidy what's already there.</li>
+<li>Read it, edit anything you'd word differently, and move on. It's a first draft for you to own — not the final word.</li>
+</ol>
 
-  <h3>Adding a client</h3>
-  <ol class="steps">
-    <li>Click <b>+ Add Client</b>.</li>
-    <li>Fill in name, DOB, school, addresses (there's an optional UK postcode lookup).</li>
-    <li>Choose the assessments that apply using the multi-select pills (tick all that apply — MABC-2, BOT-2, VMI, SPM-2, COPM, Sensory Profile, or a free-form Ad-hoc).</li>
-    <li>Tick <b>Use Marie assessment report format</b> if it's a Marie referral.</li>
-  </ol>
+<h4>The four choices on the ▾ menu</h4>
+<ul class="bul">
+<li><b>Plain</b> — warm and jargon-light, the right tone for parents and carers.</li>
+<li><b>Balanced</b> — professional but readable. The default, and what the ✨ uses on a single tap.</li>
+<li><b>Clinical</b> — formal, for EHCP panels and consultants.</li>
+<li><b>Refine</b> — keeps your meaning but tidies the wording already in the box (greyed out when the box is empty).</li>
+</ul>
 
-  <h3>Pre-assessed referrals <span class="new">v79</span></h3>
-  <p>For a child who was assessed elsewhere (e.g. by the NHS) and only needs treatment, tick <b>📂 Pre-assessed referral</b> when adding them. This client type:</p>
-  <ul>
-    <li>Has no assessment pills and no assessment-to-report workflow — so progress indicators won't sit stuck at incomplete.</li>
-    <li>Shows a 📂 marker instead of a progress ring.</li>
-    <li>Lets you <b>upload the existing report</b> from their Assessment tab (it's stored under Documents → Reports &amp; Assessments).</li>
-    <li>Works fully for Sessions, Goals, Communications and Invoicing.</li>
-  </ul>
-  <div class="tip">You can also create one instantly from <b>Sessions → Log a Session → ➕ New client — pre-assessed referral</b> when a treatment-only child turns up.</div>
+<h4>If you don't like a draft — Undo</h4>
+<p>Straight after any draft or refine, a small <b>↶ undo</b> button appears just to the <b>left of the sparkle</b> for about 30 seconds. Tap it and the box goes back exactly as it was. One click, fully reversed.</p>
 
-  <h3>The client record tabs</h3>
-  <ul>
-    <li><b>Overview</b> — snapshot, next session, last seen, quick actions.</li>
-    <li><b>Assessment</b> — the single hub for all assessment data <em>and</em> the report's written sections.</li>
-    <li><b>Sessions</b> — this child's sessions; open a note, write it up, or edit session details (see Ch.5).</li>
-    <li><b>Communication</b> — calls, emails and letters logged for this child.</li>
-    <li><b>Documents</b> — uploaded files (reports, consent, letters, photos). The main <b>Documents</b> page (in the sidebar) now also shows a <b>storage meter</b> — how much of this device's space the dashboard is using. Browsers cap it at roughly 5&nbsp;MB, and big scans/photos fill it fastest, so if it turns amber/red, download and remove older files here or keep large ones in OneDrive.</li>
-    <li><b>Checklist</b> — the workflow checklist (Intake → Assessment → Report → Close). Switched off for pre-assessed referrals.</li>
-    <li><b>Goals</b> — measurable goals with progress.</li>
-  </ul>
-
-  <h3>Discharging &amp; permanently erasing a record <span class="new">v82</span></h3>
-  <p>When you finish with a child, <b>discharge</b> them — they move to the <b>Archive</b> tab and are kept (the dashboard reminds you records are normally retained for five years). Discharge is reversible.</p>
-  <p>If a parent exercises their right to erasure, or once retention has lapsed, you can <b>permanently delete</b> a discharged record. On the Archive tab, the <b>🗑 Delete</b> button on a discharged client:</p>
-  <ol>
-    <li>first <b>downloads a full backup</b> of everything linked to that child (sessions, notes, documents, comms, goals, invoices, mileage, expenses, sticky note) to your computer;</li>
-    <li>then asks you to <b>type DELETE</b> to confirm;</li>
-    <li>then permanently removes the child and all their clinical records (sessions, notes, documents, comms, goals, mileage, expenses, sticky note).</li>
-    <li><b>Invoices are kept.</b> Any bills you raised for that child stay in your Invoices list (HMRC expects financial records kept for ~6 years) — so if a child doesn't proceed, you still bill your time, the bill remains, and the child's records go. A kept invoice shows the child's name with a small <i>(erased)</i> tag.</li>
-  </ol>
-  <div class="tip"><b>Please note:</b> this can't be undone from inside the dashboard, and the backup it saves is for your records — it isn't re-imported automatically. Keep that file somewhere safe if there's any chance you'll need it.</div>
-  <a class="backtop" href="#ch3">↑ top</a>
+<h3>Where you'll find the ✨</h3>
+<p>It's on practically every writing box: every assessment report section, the Marie sections, the Observation and ad-hoc sections, Fine Motor, Sensory, the VMI / SPM-2 / COPM narratives, the Summary and Background fields, every session-note field (including Additional Notes), the Early Years Observation form, and the Refine fields in Templates.</p>
+<div class="warn"><b>Always your clinical judgement.</b> The assistant drafts from what you've entered — it won't invent scores or facts. Read every draft before it goes into a report.</div>
+<div class="note">The <b>“Read a document with AI”</b> tools (on assessments and notes) are separate buttons, not the sparkle — they read an uploaded document for you rather than writing a section.</div>
+<div class="backtop"><a href="#ai">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH4 ───────────────────────── -->
-<section class="chapter" id="ch4">
-  <h2>📊 4 · Assessments &amp; Reports</h2>
-  <p class="lead">All assessment data and the written report live in the client's <b>Assessment</b> tab. Choose which tests apply with the pills at the top; only completed tests appear in the exported report.</p>
+<section class="ch" id="reports">
+<h2>7 · Writing &amp; exporting reports</h2>
+<p class="lead">Everything you typed in the Assessment tab becomes a finished, professional report — and you never re-type a word. One engine builds it, so what you see on screen, in the PDF, and in the Word file are always identical.</p>
 
-  <h3>Entering scores &amp; narratives</h3>
-  <ul>
-    <li><b>MABC-2</b>, <b>BOT-2</b> (a child can hold both), <b>VMI/VP/MC</b> (Beery), <b>SPM-2</b> (home &amp; school), <b>COPM</b> (pre &amp; post), <b>Sensory Profile</b> (quadrants), plus <b>Fine motor</b>, <b>Daily Living</b> and a free-form <b>Ad-hoc</b> assessment.</li>
-    <li>Scores auto-interpret into colour bands; the report builds the matching tables automatically.</li>
-    <li><b>Previous Results</b> — log earlier dated results of any test; the report prints the latest in full plus a short comparison table.</li>
-  </ul>
+<h3>How the report is built</h3>
+<p>There is no separate “report document” to write. The dashboard takes the sections you filled in on the <b>Assessment</b> tab (Chapter 5) and lays them out for you, in order, with a title page, your logo, a contents page, the test results, your narrative, the summary, the recommendations and the resources appendix. Because a <b>single engine</b> produces the on-screen Preview, the PDF and the Word file, you never have to wonder whether the export “came out right” — all three always match, down to the page.</p>
 
-  <h3>Per-field "In report / Not needed" toggles</h3>
-  <p>Every report section and narrative has a small <span class="pill">✓ In report</span> / <span class="pill">✗ Not needed</span> toggle in its header. Switch one off to leave it out of the export — the text is kept, just hidden — so you never send a report with half-finished sections.</p>
+<h4>The auto-numbered Contents page</h4>
+<p>The report opens with a <b>Contents</b> page that numbers each section for you. You never type those numbers. If you switch a section off, the Contents page <b>renumbers itself</b> automatically so there are never any gaps — section 4 always follows section 3, even if you turned off what used to be section 4.</p>
 
-  <h3>De-selecting an assessment</h3>
-  <p>If you tick a test on by mistake, you can de-select its pill — the data you entered is <b>retained</b>, just hidden from the report. Re-tick it and it's back.</p>
+<h4>The two things that decide what prints</h4>
+<ul class="bul">
+<li><b>The “In report / Not needed” toggles.</b> Every section and field has one (you met them in Chapter 5). Anything set to <b>Not needed</b> is left out completely, and the Contents page renumbers.</li>
+<li><b>Empty fields simply don't print.</b> This is the important one: <b>any field or sub-heading you leave blank is automatically left out of the report.</b> You don't have to tidy up after yourself. If you write the “Fine motor” part of an Observation but leave “Gross motor” blank, the finished report shows only the Fine motor heading — the empty Gross motor sub-heading never appears. A half-filled section only ever shows the parts you actually wrote.</li>
+</ul>
+<div class="tip">This means you can work at your own pace and export at any time. The report only ever contains finished writing — there are no empty headings, “TBC” gaps or placeholder lines to embarrass you in front of a parent or panel.</div>
 
-  <h3>Exporting the report <span class="new">v79</span></h3>
-  <p>The <b>Export</b> area gives one unified full report with three buttons:</p>
-  <table>
-    <tr><th>Button</th><th>What you get</th></tr>
-    <tr><td>Export as PDF</td><td>A finished PDF, ready to send.</td></tr>
-    <tr><td>Export as Word</td><td>An editable .docx — identical layout to the PDF.</td></tr>
-    <tr><td>Print / Preview (HTML)</td><td>Opens in a new tab; use your browser's Print → Save as PDF.</td></tr>
-  </table>
-  <p>All three share one house style: your logo top-left beside the title with your credentials underneath, a bordered client-info table, sage section headings, justified body text, and a footer on every page with the child's name, DOB and age.</p>
+<h4>The Assessment Process list</h4>
+<p>The report's “Assessment Process” section lists <b>only the tests you actually carried out</b> — the ones you switched on as pills in the Assessment tab. A test you didn't use is never mentioned, so the methods section is always an honest record of what happened.</p>
 
-  <h3>Contents page <span class="new">v84</span></h3>
-  <p>Every report opens with a numbered <b>Contents</b> list, just after the cover details. It's generated from the sections that actually print — so if you switch a section to "Not needed", it drops out of the contents and everything renumbers automatically. The numbering only appears in the contents; section headings in the body stay clean.</p>
+<h4>The Resources Appendix</h4>
+<p>If you've added resources to a child's appendix (Chapter 13), they print at the back as tidy <b>photo-cards</b> — picture, name and your description. <b>No prices and no shop links appear in the report</b> — that information is for your eyes in the Library, not for the family's copy. The appendix is purely a helpful, clean handout of the recommended items.</p>
 
-  <h3>Extra Marie report sections <span class="new">v84</span></h3>
-  <p>Marie reports can include six further sections, edited in the client's <b>Marie Report</b> tab and toggled on/off like any other: <b>Postural Management &amp; Equipment</b> (after Self-Care) and five functional domains after Sensory Processing — <b>Sleep, Communication, Cognition, Mood &amp; Behaviour, Social &amp; Relationships</b>. Each has its own <b>💬 Phrases</b> set to build the wording from; they print only when they contain text.</p>
-  <a class="backtop" href="#ch4">↑ top</a>
+<h3>How to export a report</h3>
+<figure class="fig">
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Export screen: a preview of the report on the left, and on the right three export buttons — PDF, Word and Print — with a logo on/off toggle above them.">
+  <rect x="1" y="1" width="698" height="298" rx="10" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <text x="22" y="34" font-family="Arial" font-size="15" font-weight="800" fill="#2E5248">Export report</text>
+  <rect x="22" y="50" width="300" height="230" rx="9" fill="#FBFAF7" stroke="#E4E0D6"/>
+  <rect x="40" y="66" width="40" height="14" rx="3" fill="#ECF2EE"/>
+  <text x="232" y="78" font-family="Arial" font-size="9" fill="#8A968D" text-anchor="end">page 1</text>
+  <text x="40" y="104" font-family="Arial" font-size="11" font-weight="800" fill="#2E5248">Occupational Therapy Report</text>
+  <line x1="40" y1="114" x2="304" y2="114" stroke="#E4E0D6"/>
+  <text x="40" y="134" font-family="Arial" font-size="9" fill="#5C6B62">Contents</text>
+  <line x1="40" y1="144" x2="250" y2="144" stroke="#EDEAE0"/><line x1="40" y1="160" x2="270" y2="160" stroke="#EDEAE0"/>
+  <line x1="40" y1="176" x2="230" y2="176" stroke="#EDEAE0"/><line x1="40" y1="192" x2="260" y2="192" stroke="#EDEAE0"/>
+  <line x1="40" y1="208" x2="210" y2="208" stroke="#EDEAE0"/><line x1="40" y1="224" x2="250" y2="224" stroke="#EDEAE0"/>
+  <line x1="40" y1="240" x2="190" y2="240" stroke="#EDEAE0"/><line x1="40" y1="256" x2="240" y2="256" stroke="#EDEAE0"/>
+  <rect x="356" y="50" width="322" height="60" rx="9" fill="#F6F4EE" stroke="#E4E0D6"/>
+  <text x="372" y="76" font-family="Arial" font-size="12" font-weight="700" fill="#2C3A33">Show logo on document</text>
+  <rect x="612" y="68" width="50" height="24" rx="12" fill="#4A7C6F"/><circle cx="650" cy="80" r="9" fill="#fff"/>
+  <rect x="356" y="124" width="322" height="44" rx="9" fill="#C75A3B"/><text x="517" y="151" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#fff">⭳  Export PDF</text>
+  <rect x="356" y="178" width="322" height="44" rx="9" fill="#FFFFFF" stroke="#3E6E96"/><text x="517" y="205" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#3E6E96">⭳  Export Word (.docx)</text>
+  <rect x="356" y="232" width="322" height="44" rx="9" fill="#FFFFFF" stroke="#4A7C6F"/><text x="517" y="259" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700" fill="#4A7C6F">🖶  Print / Preview</text>
+  <circle cx="650" cy="80" r="10" fill="#C75A3B" opacity="0"/>
+  <circle cx="356" cy="80" r="11" fill="#C75A3B"/><text x="356" y="84" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">1</text>
+  <circle cx="356" cy="146" r="11" fill="#C75A3B"/><text x="356" y="150" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">2</text>
+  <circle cx="356" cy="200" r="11" fill="#C75A3B"/><text x="356" y="204" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">3</text>
+  <circle cx="356" cy="254" r="11" fill="#C75A3B"/><text x="356" y="258" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">4</text>
+</svg>
+<figcaption>The Export screen: preview on the left, the three export buttons and the logo toggle on the right.</figcaption>
+<div class="legend">
+  <span><span class="pin">1</span>Logo on/off — turn your letterhead on or off for this export</span>
+  <span><span class="pin">2</span>Export PDF — the usual choice to send to families</span>
+  <span><span class="pin">3</span>Export Word — when you want to make final edits in Word</span>
+  <span><span class="pin">4</span>Print / Preview — see exactly how it will look, or print on paper</span>
+</div>
+</figure>
+<ol class="steps">
+<li>Open the client's record and go to the <b>Export</b> tab (or tap <b>Export report</b> from the Assessment tab).</li>
+<li>Glance at the <b>Preview</b> on the left to check it reads the way you want. Remember: anything blank is already left out for you.</li>
+<li>Decide whether you want your <b>logo</b> on this copy using the <b>Show logo</b> toggle (on for a polished letterhead, off for a plain document).</li>
+<li>Click <b>Export PDF</b> to get the standard file to email or print, <b>Export Word</b> if you'd like to make a few manual edits in Word first, or <b>Print / Preview</b> to send it straight to a printer.</li>
+<li>The file downloads to your computer's Downloads folder, named with the client and date, ready to attach to an email.</li>
+</ol>
+<div class="note">Because Preview, PDF and Word all come from the same engine, you don't need to “check the PDF matches the Word” — they always do.</div>
+
+<h3>Quick Exports</h3>
+<p>You don't always need the full report. The <b>Quick Exports</b> give you faster outputs:</p>
+<ul class="bul">
+<li><b>Client One-Pager</b> — a single-page summary of the person (key details and headline findings), available as a <b>PDF</b> or <b>Word</b> file. Handy for a school, a GP or a quick referral.</li>
+<li><b>Full report</b> — the complete assessment report, as above.</li>
+</ul>
+
+<h3>More than one assessment</h3>
+<p>If a child has had several dated assessments (an Initial and then an Annual Review, say), each one has its <b>own export</b>. Open the assessment you want from the Overview and export it — earlier reports stay exactly as they were, so last year's report never changes when you write this year's.</p>
+<div class="backtop"><a href="#reports">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH5 ───────────────────────── -->
-<section class="chapter" id="ch5">
-  <h2>📅 5 · Sessions, Notes &amp; the Observation Form</h2>
-  <p class="lead">Record everything you do with a child — booked from the calendar or logged after the fact — and write it up as a standard session note or a structured Observation Form.</p>
+<section class="ch" id="intake">
+<h2>8 · Intake forms &amp; consent</h2>
+<p class="lead">Send a parent or client a secure online form, and their answers come straight back to you — encrypted, so only you can read them. From a returned form you can create the client and file their consent in a couple of clicks.</p>
 
-  <h3>Two ways to create a session</h3>
-  <ul>
-    <li><b>Calendar</b> — book a session on a date; it appears in Sessions and the client record.</li>
-    <li><b>Log a Session</b> <span class="new">v79</span> — in the Sessions tab, record a session that already happened (no calendar booking needed) and go straight into the write-up.</li>
-  </ul>
+<h3>One-time setup</h3>
+<p>Before anyone can send you a form, you need to switch intake on — just once.</p>
+<ol class="steps">
+<li>Open the <b>Intake</b> tab.</li>
+<li>Click <b>Set up secure intake</b>. That's the whole job — your forms can now receive submissions.</li>
+</ol>
+<div class="warn">If you skip this, anyone trying to fill in your form sees a message saying the form is <b>“not set up to receive submissions.”</b> If a parent ever reports that, come here and run <b>Set up secure intake</b> once.</div>
 
-  <h3>Opening &amp; writing a note</h3>
-  <ol class="steps">
-    <li>From the Sessions list <em>or</em> the client's Sessions tab, open a session (📖 Open note / ✏️ Write note).</li>
-    <li>The note opens as a full page (not a popup). Set attendance, then fill the fields.</li>
-    <li>Standard note fields: Session Goals, Observations, <b>Cooperation and Motivation</b>, Next Steps, Additional Notes. Each has the ✓ In report / ✗ Not needed toggle.</li>
-    <li>Use the 🎤 mic on any field to dictate, or your pen (see tip) to handwrite.</li>
-    <li>Click <b>Save Note</b>.</li>
-  </ol>
-  <div class="tip"><b>Pen &amp; voice input:</b> tap any text box and use the 🎤 mic to dictate. On a touchscreen/pen laptop (e.g. Yoga), write with the pen straight into a field and Windows converts your handwriting to typed text — all offline.</div>
+<h3>The two sets of forms</h3>
+<p>There are two ready-made bundles depending on who you're seeing:</p>
+<ul class="bul">
+<li><b>Child set</b> — a <b>Consent</b> form and a <b>Parent Questionnaire</b> (the parent fills these in about their child).</li>
+<li><b>Adult set</b> — a <b>Consent</b> form and an <b>Adult Questionnaire</b> (the client fills these in about themselves).</li>
+</ul>
 
-  <h3>The Observation Form <span class="new">v79</span></h3>
-  <p>Switch a session's write-up to the 🧸 <b>Observation Form</b> (choose it when logging/booking, or with the Form pills inside the note). It's a structured observation built from your master template, with collapsible sections:</p>
-  <ul>
-    <li>Opens on <b>Introduction &amp; Session Plan</b>; other sections are collapsed to keep it tidy.</li>
-    <li>Each section header shows its state: <span class="pill">○ Not started</span>, <span class="pill">3/9 noted</span>, or <span class="pill">✓ Complete</span>.</li>
-    <li>Grey prompts under each sub-heading guide you — these are <b>guidance only and never print</b>.</li>
-    <li>Each section and sub-heading has the ✓ In report / ✗ Not needed toggle.</li>
-    <li>Exports to PDF/Word in the same house style as your reports, with the per-page name/DOB/age footer.</li>
-  </ul>
+<h3>How the intake flow works</h3>
+<figure class="fig">
+<svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The intake flow: a parent fills in the secure form, the encrypted answers arrive in your Intake inbox, and from there you either Create a client or File the consent.">
+  <rect x="1" y="1" width="718" height="218" rx="10" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <rect x="24" y="64" width="170" height="92" rx="10" fill="#F6F4EE" stroke="#E4E0D6"/>
+  <text x="109" y="92" text-anchor="middle" font-family="Arial" font-size="22">📝</text>
+  <text x="109" y="120" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#2C3A33">Parent fills</text>
+  <text x="109" y="138" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#2C3A33">secure form</text>
+  <path d="M198 110 h44" stroke="#8A968D" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+  <rect x="248" y="56" width="200" height="108" rx="10" fill="#ECF2EE" stroke="#4A7C6F"/>
+  <text x="348" y="84" text-anchor="middle" font-family="Arial" font-size="20">🔒</text>
+  <text x="348" y="110" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#2E5248">Encrypted Intake</text>
+  <text x="348" y="128" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#2E5248">inbox</text>
+  <text x="348" y="148" text-anchor="middle" font-family="Arial" font-size="10" fill="#5C6B62">only you can open it</text>
+  <path d="M452 110 h44" stroke="#8A968D" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+  <rect x="502" y="40" width="194" height="60" rx="10" fill="#FFFFFF" stroke="#3E6E96"/>
+  <text x="599" y="66" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#3E6E96">Questionnaire →</text>
+  <text x="599" y="84" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#3E6E96">Create client</text>
+  <rect x="502" y="120" width="194" height="60" rx="10" fill="#FFFFFF" stroke="#B5731F"/>
+  <text x="599" y="146" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#B5731F">Consent →</text>
+  <text x="599" y="164" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#B5731F">File consent</text>
+  <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#8A968D"/></marker></defs>
+  <circle cx="109" cy="58" r="11" fill="#C75A3B"/><text x="109" y="62" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">1</text>
+  <circle cx="348" cy="50" r="11" fill="#C75A3B"/><text x="348" y="54" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">2</text>
+  <circle cx="516" cy="40" r="11" fill="#C75A3B"/><text x="516" y="44" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">3</text>
+  <circle cx="516" cy="120" r="11" fill="#C75A3B"/><text x="516" y="124" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">4</text>
+</svg>
+<figcaption>Parent fills the form → it arrives encrypted in your Intake inbox → you create the client or file the consent.</figcaption>
+<div class="legend">
+  <span><span class="pin">1</span>The parent (or adult client) fills in the secure link</span>
+  <span><span class="pin">2</span>Answers are encrypted in their browser and land in your inbox</span>
+  <span><span class="pin">3</span>A questionnaire becomes a new client</span>
+  <span><span class="pin">4</span>A consent form gets filed against a client as proof</span>
+</div>
+</figure>
+<div class="note"><b>Why it's private:</b> the answers are scrambled (encrypted) <i>in the sender's own browser</i> before they travel anywhere, using your key. That means nobody in between — not the internet, not any server — can read them. Only your unlocked dashboard can open them.</div>
 
-  <h3>Editing session details from the client <span class="new">v79</span></h3>
-  <p>Open a note from a client's Sessions tab and click <b>Edit Session Details</b> to change the date, type, time, duration or location — you stay right on the client's record.</p>
-  <a class="backtop" href="#ch5">↑ top</a>
+<h3>How to send forms to a client</h3>
+<ol class="steps">
+<li>Go to the <b>Intake</b> tab.</li>
+<li>Choose the <b>child set</b> or the <b>adult set</b> depending on who you're seeing.</li>
+<li>Either <b>email the secure links</b> straight from here (the intake-forms email template fills in automatically — see Chapter 15), or use <b>Copy link</b> to paste a link into your own email or a text message.</li>
+<li>Send the <b>Consent</b> link and the <b>Questionnaire</b> link to the parent or client. They open the link, fill it in on any device, and submit — no account or password needed at their end.</li>
+</ol>
+<div class="tip"><b>No internet at the appointment, or a parent who'd rather do it on paper?</b> Use the <b>offline option</b>: download a blank <b>Word or PDF</b> of either form, fill it in together, and <b>upload the completed copy</b> to the client's Documents. You get the same record either way.</div>
+
+<h3>How to turn a submission into a client and filed consent</h3>
+<p>When a form comes back, it waits in your Intake inbox. What you do next depends on which kind it is.</p>
+<h4>A returned Questionnaire → Create client</h4>
+<ol class="steps">
+<li>Open the <b>Intake</b> tab and click the new <b>Questionnaire</b> submission to read it.</li>
+<li>Click <b>Create client</b>. The dashboard builds a brand-new client record and pours the questionnaire answers straight into it — name, date of birth, history and so on — ready for you to check.</li>
+<li>Save. You now have a full client record without re-typing anything the parent already wrote.</li>
+</ol>
+<h4>A returned Consent → File consent</h4>
+<ol class="steps">
+<li>Open the <b>Consent</b> submission from the Intake inbox.</li>
+<li>Click <b>File consent</b>. You'll be asked which client it belongs to — the matching client is <b>auto-suggested</b>, so usually you just confirm. (If the client doesn't exist yet, choose <b>+ New client</b> to create them first.)</li>
+<li>Confirm. The dashboard saves a dated <b>“Record of Consent” PDF</b> into that client's <b>Documents</b> as your proof, and ticks <b>“Consent form signed”</b> on their checklist automatically.</li>
+</ol>
+<div class="tip">Filing consent this way means you always have a tamper-proof, dated PDF on file — exactly what you'd want to show if anyone ever asked whether you had permission to assess.</div>
+<div class="backtop"><a href="#intake">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH6 ───────────────────────── -->
-<section class="chapter" id="ch6">
-  <h2>🧩 6 · Templates (and how freezing works)</h2>
-  <p class="lead">The <b>Templates</b> tab holds the standard wording that fills your documents, so you set it once and every new document uses it.</p>
-  <ul>
-    <li><b>📋 Core Report Text</b> — the standard intro paragraphs for each report section.</li>
-    <li><b>🧠 SPM-2 Subscales</b> — the SPM-2 boilerplate.</li>
-    <li><b>💜 Marie Template</b> — wording for Marie/EHCP reports (also editable from a Marie client's Assessment tab — the two mirror each other).</li>
-    <li><b>🧸 Observation Form</b> — the master structure for observations: edit headings, sub-headings and prompts, reorder or add/remove sections.</li>
-  </ul>
+<section class="ch" id="sessions">
+<h2>9 · Calendar, sessions &amp; notes</h2>
+<p class="lead">Book your appointments, see your week at a glance, and write up each session in a structured note — with the ✨ assistant on every field.</p>
 
-  <h3>Freezing — past documents never change <span class="new">v79</span></h3>
-  <div class="tip"><b>The golden rule:</b> editing a template only affects <b>new and in-progress</b> documents. Any report or observation you've already issued keeps the exact wording it was created with. Past documents never change retrospectively — important for medico-legal integrity.</div>
-  <p>This happens automatically: a report locks its template wording the first time it's exported; an observation locks its structure when it's first saved. The content stays fully editable — only the shared template text is frozen against later edits.</p>
-  <a class="backtop" href="#ch6">↑ top</a>
+<h3>The Calendar</h3>
+<p>Open <b>Calendar</b> from the sidebar to see your appointments. You can switch between a <b>weekly</b> and a <b>monthly</b> view, and click any day to see what's on.</p>
+<h4>How to book a session</h4>
+<ol class="steps">
+<li>In <b>Calendar</b>, click the day (and time) you want, or click <b>+ New session</b>.</li>
+<li>Pick the <b>client</b>, then set the <b>type</b> (e.g. assessment, treatment, review), the <b>date and time</b>, the <b>duration</b> and the <b>location</b>.</li>
+<li>Save. The session appears on your calendar and in that client's <b>Sessions</b> tab.</li>
+</ol>
+<div class="tip"><b>Keep your phone diary in step.</b> On any session you can choose <b>Open in Google Calendar</b> to drop a copy into your Google diary (this is <b>one-way</b> — it sends the appointment out; changes you later make in Google don't flow back). To move everything into another calendar app at once, use <b>Export all as .ics</b> and import that file into Apple Calendar, Outlook or similar.</div>
+
+<h3>The Sessions list</h3>
+<p>The <b>Sessions</b> tab is the list of every session across all clients. Use the <b>filters</b> to narrow it down — by client, by type, by date range, or to show only sessions still needing a written note — so you can quickly find the one you want to write up.</p>
+
+<h4>How to log a past or unbooked session</h4>
+<p>Saw someone without booking it in first? You don't need to fake a calendar entry.</p>
+<ol class="steps">
+<li>In the <b>Sessions</b> tab (or the client's record), click <b>Log a Session</b>.</li>
+<li>Set the date, time, type and duration of the session that already happened.</li>
+<li>It opens straight into the <b>note editor</b> so you can write it up there and then.</li>
+</ol>
+
+<h3>How to write up a session note</h3>
+<p>Each note starts from your <b>Session Note template</b> (you can shape that template in Chapter 15), so every write-up has the same tidy structure — you're never staring at a blank page.</p>
+<ol class="steps">
+<li>Open the session (from the Calendar, the Sessions list, or the client's Sessions tab) and click into the <b>note</b>.</li>
+<li>Work down the pre-set headings, typing what happened in each. Every field can be drafted or tidied with its <b>✨</b> — and that includes the free-text <b>Additional Notes</b> box at the bottom.</li>
+<li>When you're done, decide whether to include your <b>logo</b> using the checkbox beside the Export buttons, then <b>Export</b> the note as a PDF or Word file if you need to share it.</li>
+</ol>
+<div class="note">Like everything else, session notes <b>save themselves</b> as you type — there's no Save button, just the <i>Saving / Saved</i> note in the top bar.</div>
+<div class="backtop"><a href="#sessions">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH7 ───────────────────────── -->
-<section class="chapter" id="ch7">
-  <h2>📞 7 · Communications</h2>
-  <p class="lead">Keep a running log of every call, email, text and letter — globally (Comms tab) and per child (their Communication tab).</p>
-  <ul>
-    <li>Log type, date, contact, a summary and notes.</li>
-    <li>Flag a <b>follow-up</b> with a date — it surfaces in the notifications bell when due.</li>
-    <li>The global Comms log shows the most recent entries per month with an expander for the rest.</li>
-  </ul>
-  <a class="backtop" href="#ch7">↑ top</a>
+<section class="ch" id="comms">
+<h2>10 · The communication log</h2>
+<p class="lead">A simple, searchable record of every call, email and letter — who you spoke to, when, what was said, and any paperwork that went with it.</p>
+
+<h3>What the Comms log is for</h3>
+<p>Good practice means being able to say exactly when you spoke to a school, what a GP told you, or which letter you sent and when. The <b>Comms</b> log keeps all of that in one place. You can work from the main <b>Comms</b> tab in the sidebar (which shows contacts across every client) or from the <b>Comms</b> tab inside a single client's record (which shows just that person).</p>
+
+<h3>How to log a contact and attach a document</h3>
+<ol class="steps">
+<li>Open <b>Comms</b> (from the sidebar, or inside the client's record) and click <b>+ Log contact</b>.</li>
+<li>If you're on the main Comms tab, pick the <b>client</b> it relates to.</li>
+<li>Choose the <b>type</b> — call, email or letter — and the <b>direction</b> (incoming or outgoing), so it's clear who contacted whom.</li>
+<li>Write a short <b>summary</b> of what was discussed or sent. This is the bit you'll thank yourself for later.</li>
+<li>If there's paperwork — a letter you sent, a report a school emailed you — use <b>Attach a document</b> to add it. The file is saved into that client's <b>Documents</b> and <b>linked to this log entry</b>, so you can open it straight from the contact record. (This works from the main Comms tab too, not just inside a client.)</li>
+<li>Save. The entry appears in the client's communication history in date order.</li>
+</ol>
+<div class="tip"><b>Follow-ups don't get forgotten.</b> If a contact needs chasing, set a <b>follow-up flag</b> on it. Flagged follow-ups surface on your <b>Home</b> dashboard and in the <b>🔔 bell</b>, so an unanswered email or a callback you promised won't slip through the cracks.</div>
+<div class="note">Because an attached document lands in <b>Documents</b> and links both ways, you'll always find it whether you go looking in the Comms log or in the client's files.</div>
+<div class="backtop"><a href="#comms">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH8 ───────────────────────── -->
-<section class="chapter" id="ch8">
-  <h2>💷 8 · Finances — Invoices, Mileage, Expenses, Tax</h2>
-  <p class="lead">Raise invoices, track travel and expenses, and keep an eye on your tax position.</p>
+<section class="ch" id="documents">
+<h2>11 · Documents</h2>
+<p class="lead">Every file you keep for a client — referrals, reports, consent forms, school paperwork, photos — tidy, tagged and easy to find.</p>
 
-  <h3>Invoices</h3>
-  <ul>
-    <li>The invoice builder opens as a full page. Add multiple line items (assessment, treatment, report writing, meetings, etc.), each with hours × rate or a flat amount.</li>
-    <li><b>Travel time and mileage are separate</b> — Marie charges/pays them differently — and you can pull in logged mileage and expenses, or add them on the fly.</li>
-    <li>Choose who it's billed to: a client, or <b>Marie — monthly invoice</b> for the consolidated Marie bill.</li>
-    <li>Invoices are fully editable after creation. The exported invoice now uses the same logo-top-left header as your reports (with your bank details below). <span class="new">v84</span></li>
-    <li><b>PDF and Word.</b> The invoice preview has <b>Download PDF</b> and a new <b>Word</b> button <span class="new">v84</span> — the Word version is an editable .docx with the same layout, useful when a payer wants to edit it. (There's still <b>Download + Email</b>, which saves the PDF and opens an email draft.)</li>
-    <li><b>Due date on the PDF.</b> If you set a due date, the invoice reads <i>"Payment is kindly requested by &lt;date&gt;"</i>. Leave it blank and it falls back to the usual "within 30 days".</li>
-    <li><b>⬇ CSV export.</b> The <b>⬇ CSV</b> button at the top of the Invoices list downloads every invoice (number, dates, client, status, amount, notes) as a spreadsheet file — easy to hand to your accountant or open in Excel/Numbers.</li>
-  </ul>
+<h3>How Documents are organised</h3>
+<p>Open the <b>Documents</b> tab to see your files <b>grouped by client</b>, so each person's paperwork sits together. At the top of the screen a <b>storage meter</b> shows how much room you're using, so you always know where you stand.</p>
+<p>Every file carries a <b>category</b>, chosen from a dropdown on the file itself. The category tiles along the top let you <b>filter</b> the view to just one kind of document at a time — tap “Consent &amp; Referral”, for instance, and you see only those. The categories are:</p>
+<table>
+<tr><th>Category</th><th>What goes here</th></tr>
+<tr><td><b>Correspondence</b></td><td>Letters and emails to and from schools, GPs, families.</td></tr>
+<tr><td><b>Consent &amp; Referral</b></td><td>Signed consent forms (including the Record of Consent PDFs from intake) and referral letters.</td></tr>
+<tr><td><b>Reports &amp; Assessments</b></td><td>Your finished reports and any assessments done elsewhere.</td></tr>
+<tr><td><b>School &amp; EHCP</b></td><td>School reports, IEPs, EHCP paperwork and panel documents.</td></tr>
+<tr><td><b>Screenshots &amp; Photos</b></td><td>Photos from sessions, handwriting samples, equipment pictures.</td></tr>
+<tr><td><b>Other</b></td><td>Anything that doesn't fit the above.</td></tr>
+</table>
 
-  <h3>Mileage &amp; Expenses</h3>
-  <p>Log journeys (with optional parking/congestion costs) and expenses against a client or your practice. Both can be attached to invoices. Each page has a <b>Period</b> toggle (All time / Month / Tax year / Custom) that scopes the list, totals <em>and</em> the exports.</p>
-  <p><b>Three export formats each <span class="new">v84</span>:</b> the Travel/Mileage log and Expenses now both offer <b>⬇ CSV</b> (spreadsheet), <b>⬇ PDF</b> (a branded report with the shared header, summary and period total) and <b>⬇ Word</b> (the same as an editable .docx). Whatever period you've selected is exactly what the export contains, and the filename includes it.</p>
-
-  <h3>Tax &amp; summaries</h3>
-  <p>Income summary, annual summary and a Self-Assessment tax estimate help with your return.</p>
-  <a class="backtop" href="#ch8">↑ top</a>
+<h3>How to upload and categorise a document</h3>
+<ol class="steps">
+<li>Open the <b>Documents</b> tab, or the <b>Documents</b> tab inside a client's record.</li>
+<li>Click <b>Upload</b> and choose the file (or files) from your computer.</li>
+<li>If you're on the main Documents tab, pick which <b>client</b> the file belongs to.</li>
+<li>Set the <b>category</b> using the dropdown on the file, so it lands under the right tile.</li>
+<li>Done — it saves automatically and appears under that client, filed by category.</li>
+</ol>
+<div class="tip"><b>Some tagging happens for you.</b> Files that arrive through other parts of the app are categorised automatically — a consent PDF filed from intake is tagged <b>Consent &amp; Referral</b>, and a photo you add during a session is tagged <b>Screenshots &amp; Photos</b>. You can always change a category later from its dropdown.</div>
+<div class="backtop"><a href="#documents">↑ contents</a></div>
 </section>
 
-<!-- ───────────────────────── CH9 ───────────────────────── -->
-<section class="chapter" id="ch9">
-  <h2>⚡ 9 · CPD, Supervision &amp; Power Features</h2>
-  <h3>CPD &amp; Supervision</h3>
-  <ul>
-    <li><b>CPD log</b> — record activities with hours, reflection and HCPC cycle; a category chart shows your spread. Use <b>⬇ Export PDF</b> to download the whole log — every entry, your reflections and total hours — as a single tidy PDF for an <b>HCPC audit</b>.</li>
-    <li><b>Supervision</b> — full reflective supervision records (opens as a page), tracking actions and themes.</li>
+<section class="ch" id="finances">
+<h2>12 · Finances: invoices, mileage, expenses &amp; tax</h2>
+<p class="lead">The whole money side of your practice in one place — raise an invoice in under a minute, log your travel and expenses as you go, and have everything totalled and ready when the tax year ends. This is a big chapter because it does a lot; take it section by section.</p>
+
+<p>The <b>Finances</b> tab is divided into sub-tabs — <b>Invoices</b>, <b>Mileage</b>, <b>Expenses</b>, <b>Income</b> and <b>Tax</b> — plus an <b>Annual Summary</b>. You'll spend most of your time in Invoices; the rest quietly build up the totals that make your tax return painless.</p>
+<div class="tip">Before you start, fill in <span class="path">Settings → Bank Details</span> and your <b>Services &amp; prices</b> (Chapter 2). Once those are set, most of an invoice fills itself in.</div>
+
+<h3>Invoices</h3>
+<p>An invoice is the bill you send a client. The dashboard builds it from your saved prices, adds up the totals, tracks whether it's been paid, and exports it as a tidy document.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A sample invoice: your logo and details at the top, the client's name, a table of line items with a travel line, the total, and your bank details and due date at the bottom.">
+  <rect x="1" y="1" width="698" height="318" rx="10" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <rect x="28" y="26" width="48" height="22" rx="4" fill="#ECF2EE"/><text x="52" y="41" text-anchor="middle" font-family="Arial" font-size="10" fill="#2E5248">logo</text>
+  <text x="672" y="36" text-anchor="end" font-family="Arial" font-size="14" font-weight="800" fill="#2E5248">INVOICE</text>
+  <text x="672" y="52" text-anchor="end" font-family="Arial" font-size="10" fill="#8A968D">No. 0042 · 17 Jun 2026</text>
+  <line x1="28" y1="64" x2="672" y2="64" stroke="#E4E0D6"/>
+  <text x="28" y="84" font-family="Arial" font-size="10" fill="#8A968D">Bill to</text>
+  <text x="28" y="100" font-family="Arial" font-size="12" font-weight="700" fill="#2C3A33">Parent of A. Sample</text>
+  <rect x="28" y="118" width="644" height="24" fill="#ECF2EE"/>
+  <text x="38" y="134" font-family="Arial" font-size="10" font-weight="700" fill="#2E5248">Description</text>
+  <text x="470" y="134" font-family="Arial" font-size="10" font-weight="700" fill="#2E5248">Qty</text>
+  <text x="560" y="134" font-family="Arial" font-size="10" font-weight="700" fill="#2E5248">Rate</text>
+  <text x="662" y="134" text-anchor="end" font-family="Arial" font-size="10" font-weight="700" fill="#2E5248">Amount</text>
+  <text x="38" y="160" font-family="Arial" font-size="11" fill="#2C3A33">Motor co-ordination assessment</text>
+  <text x="470" y="160" font-family="Arial" font-size="11" fill="#5C6B62">1</text><text x="560" y="160" font-family="Arial" font-size="11" fill="#5C6B62">£480</text><text x="662" y="160" text-anchor="end" font-family="Arial" font-size="11" fill="#2C3A33">£480.00</text>
+  <line x1="28" y1="172" x2="672" y2="172" stroke="#EDEAE0"/>
+  <text x="38" y="192" font-family="Arial" font-size="11" fill="#2C3A33">Report writing</text>
+  <text x="470" y="192" font-family="Arial" font-size="11" fill="#5C6B62">2 hr</text><text x="560" y="192" font-family="Arial" font-size="11" fill="#5C6B62">£60</text><text x="662" y="192" text-anchor="end" font-family="Arial" font-size="11" fill="#2C3A33">£120.00</text>
+  <line x1="28" y1="204" x2="672" y2="204" stroke="#EDEAE0"/>
+  <text x="38" y="224" font-family="Arial" font-size="11" fill="#2C3A33">Travel (calculated · 40 min × £25/hr)</text>
+  <text x="470" y="224" font-family="Arial" font-size="11" fill="#5C6B62">—</text><text x="560" y="224" font-family="Arial" font-size="11" fill="#5C6B62">—</text><text x="662" y="224" text-anchor="end" font-family="Arial" font-size="11" fill="#2C3A33">£16.67</text>
+  <line x1="28" y1="236" x2="672" y2="236" stroke="#E4E0D6"/>
+  <text x="662" y="258" text-anchor="end" font-family="Arial" font-size="13" font-weight="800" fill="#2E5248">Total  £616.67</text>
+  <text x="28" y="284" font-family="Arial" font-size="10" fill="#8A968D">Pay to: Acct 12345678 · Sort 00-00-00 · Due 1 Jul 2026</text>
+  <rect x="560" y="272" width="112" height="22" rx="11" fill="#FBE9E2"/><text x="616" y="287" text-anchor="middle" font-family="Arial" font-size="10" font-weight="700" fill="#9A3B22">UNPAID</text>
+  <circle cx="402" cy="224" r="11" fill="#C75A3B"/><text x="402" y="228" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">1</text>
+  <circle cx="616" cy="283" r="11" fill="#C75A3B"/><text x="616" y="287" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">2</text>
+</svg>
+<figcaption>A sample invoice — line items fill from your saved prices; the Travel line and the paid/unpaid status are highlighted.</figcaption>
+<div class="legend">
+  <span><span class="pin">1</span>The Travel line — Quoted, flat, or Calculated from journey time</span>
+  <span><span class="pin">2</span>The paid / unpaid badge you toggle when money arrives</span>
+</div>
+</figure>
+
+<h4>How to create an invoice</h4>
+<ol class="steps">
+<li>Go to <b>Finances → Invoices</b> and click <b>New invoice</b>.</li>
+<li>Pick the <b>client</b> it's for. Their details fill in at the top.</li>
+<li>Add your <b>line items</b>. As you start typing, they <b>auto-fill from your Services &amp; prices</b> list — choose “Motor co-ordination assessment” and the £480 drops in; choose “Report writing” and set the hours, and it works out the amount. You can still type over any figure for a one-off.</li>
+<li>Add a <b>Travel line</b> if you're charging for the journey. You have three ways to price it:
+  <ul class="bul">
+  <li><b>Quoted</b> — a flat, agreed figure that you simply type in. <i>This is the default.</i></li>
+  <li><b>Calculated</b> — the dashboard works it out as <b>journey minutes × your travel rate</b> (so 40 minutes at £25/hr = £16.67). You can still override the result if you'd like to round it.</li>
   </ul>
-  <h3>Power features</h3>
-  <ul>
-    <li><b>Global search</b> (<code>⌘K</code> / <code>Ctrl+K</code>) — finds clients, sessions (incl. note content), invoices and comms.</li>
-    <li><b>Notifications bell</b> — overdue invoices, EHCP deadlines, follow-ups and reminders due.</li>
-    <li><b>Reminders / to-dos</b> — a manual checklist on the Home page.</li>
-    <li><b>Focus Mode</b>, <b>dark mode</b>, adjustable <b>font size</b>.</li>
-    <li><b>Annie</b> — your built-in AI assistant. Ask her how to do anything in the dashboard (needs your own Claude API key, entered once).</li>
-  </ul>
-  <div class="tip"><b>Stuck?</b> Open Annie and ask in plain English — she knows every feature in this guide.</div>
-  <a class="backtop" href="#ch9">↑ top</a>
+  </li>
+<li>Set the <b>invoice date</b> and the <b>due date</b> (when you'd like to be paid by).</li>
+<li><b>Save.</b> The invoice gets the next number automatically and lands in your Invoices list marked <b>Unpaid</b>.</li>
+</ol>
+
+<h4>The fields on an invoice</h4>
+<table>
+<tr><th>Field</th><th>What it does</th></tr>
+<tr><td><b>Client</b></td><td>Who the invoice is billed to; pulls their name and details in.</td></tr>
+<tr><td><b>Invoice number</b></td><td>Assigned automatically, in sequence — you don't type it.</td></tr>
+<tr><td><b>Invoice date</b></td><td>The date the invoice is raised.</td></tr>
+<tr><td><b>Due date</b></td><td>When payment is expected; drives overdue reminders.</td></tr>
+<tr><td><b>Line items</b></td><td>What you're charging for; descriptions and rates auto-fill from Services &amp; prices.</td></tr>
+<tr><td><b>Travel line</b></td><td>Quoted (flat, the default) or Calculated (minutes × travel rate, overridable).</td></tr>
+<tr><td><b>Total</b></td><td>Added up for you from the line items.</td></tr>
+<tr><td><b>Bank details</b></td><td>Pulled from Settings so the client knows where to pay.</td></tr>
+<tr><td><b>Status</b></td><td>Paid or Unpaid — you toggle it when the money arrives.</td></tr>
+</table>
+
+<h4>How to mark an invoice paid</h4>
+<ol class="steps">
+<li>Open the invoice (or find it in the Invoices list) and click <b>Mark paid</b> when the money comes in.</li>
+<li>The status flips to <b>Paid</b> and it drops out of your unpaid total.</li>
+<li>Use the <b>“Next unpaid →”</b> nudge to jump straight to the next invoice still owing, so you can work through your outstanding bills in one sitting.</li>
+</ol>
+
+<h4>How to export or email an invoice</h4>
+<ol class="steps">
+<li>Open the invoice and choose <b>Export PDF</b> (the usual choice to send), <b>Export Word</b> (to edit first), or <b>Export CSV</b> (for your records or accountant).</li>
+<li>To send it, use <b>Email invoice</b> — the invoice email template fills in for you (Chapter 15); attach the PDF and send.</li>
+</ol>
+<div class="note"><b>Payment status at a glance:</b> the Invoices list shows what's paid, what's unpaid and what's overdue, and the <b>Unpaid Invoices</b> tile on Home keeps the number in front of you.</div>
+
+<h3>Mileage / Travel log</h3>
+<p>Separate from charging a client for travel, the <b>Mileage</b> sub-tab is your own record of business journeys — the one HMRC cares about.</p>
+<h4>How to log a journey</h4>
+<ol class="steps">
+<li>Go to <b>Finances → Mileage</b> and click <b>Add journey</b>.</li>
+<li>Enter the <b>date</b>, where you travelled <b>from</b> and <b>to</b>, the <b>miles</b>, and the <b>purpose</b> (e.g. “home visit — A. Sample”).</li>
+<li>The log applies your <b>per-mile rate</b> (set in Services &amp; prices, e.g. 45p/mile) and keeps a running total.</li>
+<li>When you need it, <b>export</b> the whole log as <b>PDF</b>, <b>Word</b> or <b>CSV</b>.</li>
+</ol>
+
+<h3>Expenses</h3>
+<p>The <b>Expenses</b> sub-tab records money you spend on the business — equipment, test forms, training, postage.</p>
+<h4>How to add an expense</h4>
+<ol class="steps">
+<li>Go to <b>Finances → Expenses</b> and click <b>Add expense</b>.</li>
+<li>Enter the <b>date</b>, choose a <b>category</b>, and type the <b>amount</b>.</li>
+<li><b>Attach a receipt</b> (a photo or PDF) so you have the proof on file.</li>
+<li>Save. It joins your expenses total and is ready to <b>export</b> when you need it.</li>
+</ol>
+
+<h3>Income</h3>
+<p>The <b>Income</b> sub-tab records the money coming in — your paid invoices feed it, giving you a running picture of what you've actually earned over the year, separate from what's still owed.</p>
+
+<h3>Tax</h3>
+<p>The <b>Tax</b> sub-tab pulls it all together against the UK tax year. It totals your <b>income</b> and takes off your <b>expenses</b> and <b>mileage</b> to show your position, working to the standard tax-year dates (<b>6 April to 5 April</b>). It's there to show you, at any point, roughly where you stand and to give you the figures you'll need at return time. Keep your expenses and mileage up to date through the year and there's nothing to reconstruct in a panic later.</p>
+<div class="note">The dashboard helps you organise and total your figures; it isn't an accountant. For what you actually owe and any allowances, check with a qualified accountant.</div>
+
+<h3>Annual Summary</h3>
+<p>The <b>Annual Summary</b> gives you (and your accountant) a single, clean overview of the year — total income, total expenses, total mileage and the resulting position — that you can export and hand over. It turns a year of small entries into one tidy page at return time.</p>
+<div class="backtop"><a href="#finances">↑ contents</a></div>
 </section>
 
-<footer>
-  Nichola Philbey Occupational Therapy · Dashboard User Guide · v84 · Confidential
-</footer>
+<section class="ch" id="library">
+<h2>13 · The Library</h2>
+<p class="lead">Your reference shelf and toolkit — ready-made clinical phrases, a catalogue of recommended OT resources with photos, score look-up tables, and a sentence builder. It saves you re-writing the same wording and re-finding the same products.</p>
+
+<p>The Library is split into five tabs along the top:</p>
+
+<h3>Phrases</h3>
+<p>A bank of <b>clinical phrases</b>, organised by report section, so you never have to phrase “reduced core stability” from scratch again. There's a <b>standard</b> set and a <b>Marie</b> set (matching the EHCP report sections). Find the phrase you want and <b>click to insert</b> it straight into the section you're writing.</p>
+
+<h3>Resources</h3>
+<p>A catalogue of around <b>50 OT items</b> — pencil grips, wobble cushions, weighted gear, fine-motor kits and so on — each with a <b>photo</b>, a description, a <b>price</b> and a <b>supplier link</b>. This is where you build the recommendations that print in a child's report appendix.</p>
+<h4>Editing and adding resources</h4>
+<ul class="bul">
+<li>Every item is <b>editable</b> via the <b>✏️ Edit</b> button — you can change its <b>name, description, price</b> or <b>photo</b>. The edit form opens as a <b>pop-up box (modal) in the middle of the screen</b>.</li>
+<li>The built-in items have a <b>↺ Reset</b> so you can put them back to how they started if you change your mind.</li>
+<li>You can add <b>your own resources</b> too, complete with a photo, using the <b>Upload photo</b> button.</li>
+<li>Each item has a <b>Copy</b> button (to copy its details) and a <b>Buy</b> link (to the supplier).</li>
+</ul>
+<h4>How to add your own resource with a photo</h4>
+<ol class="steps">
+<li>Open the <b>Library → Resources</b> tab and click <b>+ Add resource</b>.</li>
+<li>In the pop-up form, type the <b>name</b>, a <b>description</b> and the <b>price</b>, and paste a <b>supplier link</b> if you have one.</li>
+<li>Click <b>Upload photo</b> and choose a picture of the item from your computer.</li>
+<li>Save. Your resource now sits alongside the built-in ones and can be added to any child's appendix.</li>
+</ol>
+<div class="tip"><b>Why the photos matter:</b> resource photos are stored <i>inside the app</i>, not just linked to a website. That means they show in the Library and <b>embed in the Word/PDF report appendix even when you're offline</b> — the family's report always has the pictures, with no broken images. (And remember from Chapter 7: the appendix prints the photo-cards <b>without</b> prices or links.)</div>
+<p>To put a resource on a child's report, open it and choose <b>add to a child's appendix</b>, then pick the client.</p>
+
+<h3>Reference</h3>
+<p>Quick <b>score look-up tables</b> for when you're interpreting results — <b>MABC-2, BOT-2, VMI</b> and <b>SPM-2</b> — plus the <b>DCD DSM-5</b> criteria. A handy at-a-glance check without reaching for the manuals.</p>
+
+<h3>My Phrases</h3>
+<p>Your <b>own</b> saved phrases — the wordings you reach for again and again — kept separately from the built-in set so they're easy to find and re-use.</p>
+
+<h3>Builder</h3>
+<p>A <b>sentence builder</b> that helps you assemble a clinical sentence from parts (subject, finding, impact and so on) when you'd like a hand constructing a line rather than writing it from a blank box.</p>
+<div class="backtop"><a href="#library">↑ contents</a></div>
+</section>
+
+<section class="ch" id="focus">
+<h2>14 · Focus mode</h2>
+<p class="lead">A calm corner of the app for getting report-writing done — a gentle timer, a breathing exercise, somewhere to dump stray thoughts, and a little encouragement. The timer follows you around the app, so you can start a focused block and keep working.</p>
+
+<figure class="fig">
+<svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Focus tab: a large circular countdown timer with session presets, a breathing circle, and a thought-catcher box. A timer pill shows in the top bar.">
+  <rect x="1" y="1" width="698" height="328" rx="10" fill="#FFFFFF" stroke="#E4E0D6"/>
+  <path d="M1 11 a10 10 0 0 1 10 -10 h678 a10 10 0 0 1 10 10 v30 h-698 z" fill="#4A7C6F"/>
+  <text x="22" y="27" font-family="Arial" font-size="13" font-weight="700" fill="#fff">Focus</text>
+  <rect x="566" y="9" width="92" height="24" rx="12" fill="#FFFFFF" opacity="0.25"/><text x="612" y="25" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#fff">⏱ 14:32 ▸</text>
+  <circle cx="150" cy="150" r="74" fill="none" stroke="#E4E0D6" stroke-width="12"/>
+  <path d="M150 76 a74 74 0 0 1 64 111" fill="none" stroke="#4A7C6F" stroke-width="12" stroke-linecap="round"/>
+  <text x="150" y="150" text-anchor="middle" font-family="Arial" font-size="30" font-weight="800" fill="#2E5248">14:32</text>
+  <text x="150" y="172" text-anchor="middle" font-family="Arial" font-size="11" fill="#8A968D">Focus 15</text>
+  <g font-family="Arial" font-size="11">
+    <rect x="70" y="244" width="68" height="26" rx="13" fill="#ECF2EE"/><text x="104" y="261" text-anchor="middle" fill="#2E5248">Sprint 10</text>
+    <rect x="146" y="244" width="68" height="26" rx="13" fill="#4A7C6F"/><text x="180" y="261" text-anchor="middle" fill="#fff" font-weight="700">Focus 15</text>
+    <rect x="62" y="278" width="68" height="26" rx="13" fill="#ECF2EE"/><text x="96" y="295" text-anchor="middle" fill="#2E5248">Deep 25</text>
+    <rect x="138" y="278" width="84" height="26" rx="13" fill="#ECF2EE"/><text x="180" y="295" text-anchor="middle" fill="#2E5248">+ custom</text>
+  </g>
+  <circle cx="370" cy="150" r="58" fill="#ECF2EE" stroke="#4A7C6F" stroke-width="2"/>
+  <circle cx="370" cy="150" r="34" fill="#D9E8E0"/>
+  <text x="370" y="146" text-anchor="middle" font-family="Arial" font-size="11" font-weight="700" fill="#2E5248">Breathe</text>
+  <text x="370" y="162" text-anchor="middle" font-family="Arial" font-size="9" fill="#5C6B62">in · hold · out</text>
+  <text x="370" y="232" text-anchor="middle" font-family="Arial" font-size="10" fill="#8A968D">Box breathing</text>
+  <rect x="470" y="92" width="200" height="150" rx="10" fill="#FBFAF7" stroke="#E4E0D6"/>
+  <text x="486" y="114" font-family="Arial" font-size="11" font-weight="700" fill="#2C3A33">Thought Catcher</text>
+  <line x1="486" y1="132" x2="654" y2="132" stroke="#EDEAE0"/><line x1="486" y1="152" x2="654" y2="152" stroke="#EDEAE0"/><line x1="486" y1="172" x2="640" y2="172" stroke="#EDEAE0"/><line x1="486" y1="192" x2="654" y2="192" stroke="#EDEAE0"/>
+  <text x="486" y="228" font-family="Arial" font-size="9" fill="#8A968D">park a stray thought, get back to it later</text>
+  <text x="612" y="300" text-anchor="middle" font-family="Arial" font-size="22">🪴</text><text x="654" y="300" text-anchor="middle" font-family="Arial" font-size="20">🐱</text>
+  <circle cx="612" cy="21" r="10" fill="#C75A3B"/><text x="612" y="25" text-anchor="middle" fill="#fff" font-size="11" font-weight="800" font-family="Arial">1</text>
+  <circle cx="150" cy="76" r="11" fill="#C75A3B"/><text x="150" y="80" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">2</text>
+  <circle cx="180" cy="244" r="11" fill="#C75A3B"/><text x="180" y="248" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">3</text>
+  <circle cx="370" cy="92" r="11" fill="#C75A3B"/><text x="370" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">4</text>
+  <circle cx="486" cy="92" r="11" fill="#C75A3B"/><text x="486" y="96" text-anchor="middle" fill="#fff" font-size="12" font-weight="800" font-family="Arial">5</text>
+</svg>
+<figcaption>The Focus tab: timer, presets, breathing circle and thought-catcher — with the ⏱ timer pill up in the top bar.</figcaption>
+<div class="legend">
+  <span><span class="pin">1</span>The ⏱ pill — your timer, visible from every tab</span>
+  <span><span class="pin">2</span>The circular countdown timer</span>
+  <span><span class="pin">3</span>Session presets — Sprint 10, Focus 15, Deep 25 or custom</span>
+  <span><span class="pin">4</span>The box-breathing circle</span>
+  <span><span class="pin">5</span>The Thought Catcher brain-dump</span>
+</div>
+</figure>
+
+<h3>The timer</h3>
+<p>Pick how long you want to focus and the timer counts down. There are ready-made presets — <b>Sprint 10</b> (10 minutes), <b>Focus 15</b>, <b>Deep 25</b> — or set your own <b>custom</b> length. After a block, a <b>5-minute break</b> is there for you. When a timer block ends, you'll hear a <b>gentle chime</b> so you know to stop and stretch.</p>
+<div class="tip"><b>The timer keeps running when you leave Focus.</b> Start a block, then switch to Clients or Reports and carry on working — the timer doesn't stop. A small <b>⏱ timer pill appears in the top bar</b>, visible from <i>any</i> tab, so you can always see how long is left, jump back to Focus, or stop the session — wherever you are in the app.</div>
+
+<h3>Box-breathing</h3>
+<p>A simple <b>box-breathing exercise</b> — a circle that gently guides you to breathe in, hold, and breathe out — for a one-minute reset between tasks or before a tricky bit of writing.</p>
+
+<h3>Thought Catcher</h3>
+<p>A <b>brain-dump box</b>. When a stray “oh, I must email that school” pops up mid-flow, park it in the Thought Catcher and get straight back to what you were doing — the thought is safely caught for later, so it stops rattling around your head.</p>
+
+<h3>A few gentle touches</h3>
+<ul class="bul">
+<li>A <b>tally counter</b> for ticking off whatever you're counting — sections written, tasks cleared.</li>
+<li>A <b>Monstera plant</b> and <b>Oaty the cat</b> who offer a bit of quiet encouragement as you work.</li>
+<li><b>Tap-to-start suggestion chips</b> drawn from your <i>real</i> to-dos — tap one to begin a focused block on something that actually needs doing.</li>
+</ul>
+<div class="note">The only sound in Focus is the gentle chime at the end of a timer block. There's nothing to configure — just pick a length and begin.</div>
+<div class="backtop"><a href="#focus">↑ contents</a></div>
+</section>
+
+<section class="ch" id="templates">
+<h2>15 · Templates</h2>
+<p class="lead">The wording the whole app starts from — report intros, the Observation form, the standard session note, your email messages. Shape these once to sound like you, and every new document begins half-written.</p>
+
+<p>Open <b>Templates</b> from the sidebar. These are the master copies the dashboard reaches for whenever it creates something new. Editing one here changes the starting point for everything you make from then on.</p>
+
+<h3>What you can edit</h3>
+<ul class="bul">
+<li><b>Report intros &amp; boilerplate</b> — the standard introductory wording and stock paragraphs that open and frame your reports.</li>
+<li><b>The Marie template</b> — the EHCP-format report wording, including its extra sections.</li>
+<li><b>The Observation Form</b> — its <b>headings, sub-headings and prompts</b>. This is the structure that pre-fills the 🧸 Observation in an assessment, so the shape you set here is the shape every observation follows.</li>
+<li><b>The standard Session Note</b> — its <b>headings, prompts and boilerplate</b>, which every new session note starts from (Chapter 9).</li>
+<li><b>Email templates</b> — the messages the app drafts for you: the <b>intake-forms email</b>, the <b>invoice email</b>, the <b>session reminder</b>, and a separate <b>assessment reminder</b>. They use <b>[PLACEHOLDER]</b> tokens (like a client's name or an appointment date) that <b>fill in automatically</b> when the email is created. The <b>assessment reminder</b> is used automatically for appointments that are assessments, while the ordinary session reminder covers the rest.</li>
+</ul>
+
+<h3>How to edit a template</h3>
+<ol class="steps">
+<li>Open <b>Templates</b> and choose the template you want to change.</li>
+<li>Edit the wording, headings or prompts. Most fields have the <b>✨ Refine</b> button if you'd like help tidying the phrasing.</li>
+<li>Leave the <b>[PLACEHOLDER]</b> tokens in place where you want details filled in automatically — type around them rather than deleting them.</li>
+<li>It saves itself. From now on, new documents of that kind start from your updated wording.</li>
+</ol>
+<div class="warn"><b>Editing a template only affects new and in-progress documents.</b> Anything you've <i>already written</i> keeps its original wording — a report you finished last week won't suddenly change when you reword the intro template. This is on purpose, so your existing documents stay exactly as you left them.</div>
+<div class="backtop"><a href="#templates">↑ contents</a></div>
+</section>
+
+<section class="ch" id="cpd">
+<h2>16 · CPD &amp; Supervision</h2>
+<p class="lead">Keep your professional development and supervision records up together as you go, so an HCPC audit is a one-tap export rather than a weekend of digging.</p>
+
+<h3>CPD log</h3>
+<p>The <b>CPD</b> log is where you record your continuing professional development — courses, reading, reflection, learning from cases. Each entry sits in a <b>category</b>, and a <b>chart</b> shows how your activity is spread across those categories, so you can see at a glance whether your development is well-rounded.</p>
+<h4>How to add a CPD entry</h4>
+<ol class="steps">
+<li>Open <b>CPD</b> from the sidebar and click <b>+ Add entry</b>.</li>
+<li>Record the <b>date</b>, a <b>title</b>, the <b>category</b>, the <b>hours</b>, and a short <b>reflection</b> on what you learned and how it changes your practice.</li>
+<li>Save. The entry joins your log, adds to your <b>total hours</b>, and updates the category chart.</li>
+</ol>
+<div class="tip"><b>Audit-ready in one tap.</b> When the HCPC asks for your CPD, use the <b>one-tap PDF export</b> — it produces a tidy record of your entries, your reflections and your total hours, ready to submit. No reformatting, no scramble.</div>
+
+<h3>Supervision</h3>
+<p>The <b>Supervision</b> log keeps a structured record of your supervision sessions — dates, who with, what was discussed, actions and reflections — in a consistent format.</p>
+<h4>How to record a supervision session</h4>
+<ol class="steps">
+<li>Open <b>Supervision</b> and click <b>+ New record</b>.</li>
+<li>Fill in the structured fields for the session.</li>
+<li>If it helps, <b>pull your current caseload</b> into the record — you can bring it in as a record in its own right or <b>insert it as a summary</b> within the supervision note, so the discussion is anchored to the real caseload at that date.</li>
+<li><b>Export</b> the record as <b>PDF</b> or <b>Word</b> whenever you need a copy.</li>
+</ol>
+<div class="backtop"><a href="#cpd">↑ contents</a></div>
+</section>
+
+<section class="ch" id="data">
+<h2>17 · Your data: safety, sync &amp; backups</h2>
+<p class="lead">Your records are private by design and backed up in layers, so the everyday worries — “could someone read this?”, “what if my laptop dies?”, “what if a sync wipes my work?” — are quietly taken care of.</p>
+
+<h3>Everything is encrypted</h3>
+<p>All of your data is <b>encrypted with your master password before it's ever saved or uploaded</b>. In plain terms: your records are scrambled with a key only your password unlocks, so only you can read them. Anything stored on your device or in the cloud is held in that scrambled form — useless to anyone without your password.</p>
+
+<h3>Layers of backup</h3>
+<p>You're protected by several backups working together, so a single mishap can't lose your work:</p>
+<ul class="bul">
+<li><b>Continuous local saves</b> — as you type, your work is saved on your device. (That's the <i>Saving / Saved</i> you see in the top bar.)</li>
+<li><b>Daily backup files</b> — a dated backup is written so you can step back to an earlier copy if you ever need to.</li>
+<li><b>Cloud Sync</b> — an <b>encrypted copy</b> kept in the cloud, with a <b>restorable history</b> you can roll back to under <span class="path">Settings → Backups</span>.</li>
+<li><b>Optional daily OneDrive snapshot</b> — if you turn it on, a daily snapshot is also tucked into your OneDrive for an extra off-device copy.</li>
+</ul>
+<div class="warn"><b>Your recovery key is essential.</b> Encryption means even support cannot open your data for you. If you ever forget your master password, the <b>recovery key</b> (Chapter 2) is the <i>only</i> way back in. Please make sure you've saved it somewhere safe and separate.</div>
+
+<h3>Sync won't overwrite your work</h3>
+<p>When you log in, if the cloud is holding a <b>different or older</b> copy than the one on your device, the dashboard will <b>not silently overwrite your device</b>. It keeps your local data and <b>asks you first</b>, so a background sync can never quietly wipe records you've just written. You're always in control of which copy wins.</p>
+
+<h3>Moving to a new computer</h3>
+<p>Because your encrypted data lives in Cloud Sync, getting onto a new machine is simply a matter of opening the dashboard there and <b>unlocking with the same master password</b> — your records sync down. (This is also why the recovery key matters: same password, same data, anywhere.)</p>
+
+<h3>Erasing a client's data (GDPR)</h3>
+<p>If a discharged client asks you to erase their data, you can do it cleanly and provably.</p>
+<ol class="steps">
+<li>Open the client's record and choose the <b>GDPR erasure</b> option.</li>
+<li>The dashboard <b>downloads a backup first</b>, so you keep a copy for your own legal records before anything is removed.</li>
+<li>You'll be asked to <b>type DELETE to confirm</b> — a deliberate step so it can't happen by accident.</li>
+<li>Confirm, and that client's data is erased from the app.</li>
+</ol>
+<div class="backtop"><a href="#data">↑ contents</a></div>
+</section>
+
+<section class="ch" id="annie">
+<h2>18 · Annie, your assistant</h2>
+<p class="lead">A friendly helper you can ask, in plain English, “how do I…?” — right where you're working.</p>
+
+<h3>Where to find her</h3>
+<p>Annie is the floating <b>✨ button in the bottom-right corner of every screen</b>. Tap it any time and ask your question the way you'd ask a colleague — “how do I mark an invoice as paid?”, “where do I file a consent form?”, “how do I switch a child to the Marie report?” — and she'll talk you through it.</p>
+
+<h3>How she works</h3>
+<p>Annie runs on <b>Claude</b> (from Anthropic), powered by an <b>Anthropic API key stored only on your device</b>. That single key powers everything clever in the app: Annie's chat <i>and</i> all the <b>✨ Draft / Refine</b> writing buttons throughout the dashboard. Add the key once (Chapter 2, or when Annie first prompts you) and it all comes to life.</p>
+<div class="note"><b>What Annie can and can't see.</b> Annie helps you <i>use the app</i> — she explains how to do things and points you to where things live. She <b>cannot see your data or your figures</b>: she won't read a client's notes or tell you a total. Ask “where do I find unpaid invoices?” and she'll send you to the right place; she won't tell you the amount.</div>
+<div class="backtop"><a href="#annie">↑ contents</a></div>
+</section>
+
+<section class="ch" id="faq">
+<h2>19 · Troubleshooting &amp; FAQ</h2>
+<p class="lead">Quick, practical answers to the things most likely to come up. If something's not behaving, start here.</p>
+
+<h4>I've forgotten my master password — what now?</h4>
+<p>Use your <b>recovery key</b> to get back in (Chapter 2). Without it, there's no way to recover the data — the encryption that keeps your records private also means nobody, including support, can unlock them for you. If you haven't set a recovery key yet and you <i>can</i> still get in, do it today: <span class="path">Settings → Security → Generate recovery key</span>.</p>
+
+<h4>Someone filling in my form saw “not set up to receive submissions.”</h4>
+<p>Your intake just needs switching on. Open the <b>Intake</b> tab and click <b>Set up secure intake</b> — once only (Chapter 8). After that, your forms accept submissions and the message won't appear again.</p>
+
+<h4>My intake submissions won't load, or I see a “401”.</h4>
+<p>That points to <b>Cloud Sync</b> not being connected. Open <span class="path">Settings → Cloud Sync</span> and click <b>Connect &amp; Test</b> until you see the green “Cloud synced” confirmation, then try the submissions again.</p>
+
+<h4>Where did my attached document go?</h4>
+<p>Straight into the <b>Documents</b> tab, filed under that client and <b>tagged</b> with a category. Anything you attach to a comms entry is saved there and linked both ways, so you can open it from the Comms log or from Documents (Chapters 10–11).</p>
+
+<h4>A section is missing from my report.</h4>
+<p>Two friendly reasons, both by design. Either that section's <b>“In report / Not needed”</b> toggle is set to <b>Not needed</b> — switch it back to <b>In report</b> (Chapters 5 and 7). Or the section was <b>left blank</b>: empty fields and sub-headings are <i>intentionally omitted</i> so your report never shows empty headings. Fill it in and it appears.</p>
+
+<h4>How do I get my data onto a new computer?</h4>
+<p>Just open the dashboard on the new machine and <b>unlock with the same master password</b>. Your encrypted records sync down via <b>Cloud Sync</b> — nothing to copy across by hand (Chapter 17).</p>
+
+<h4>Is my data private?</h4>
+<p>Yes. Everything is <b>encrypted with your master password</b> before it's saved or uploaded, so it's only ever stored as a scrambled copy that <b>only your password can open</b>. Even the cloud backup can't be read without it.</p>
+
+<h4>The AI button (✨) isn't doing anything.</h4>
+<p>It needs an <b>Anthropic API key</b>, stored on your device. Add it through <b>Annie</b> (the ✨ button, bottom-right) or under <span class="path">Settings</span>. One key powers Annie and every ✨ Draft/Refine button (Chapters 2 and 18).</p>
+
+<h4>There's an orange “TEST VERSION” banner — is something wrong?</h4>
+<p>Not at all — that's the safe practice copy with sample clients, for trying things out. Your real, private records are in the normal version with no banner (Chapter 1).</p>
+
+<h4>I can't find a Save button.</h4>
+<p>There isn't one, and you don't need it. Everything saves itself as you type — watch for <i>Saving / Saved</i> in the top bar. You can close the tab whenever you like and your work will be there next time.</p>
+<div class="backtop"><a href="#faq">↑ contents</a></div>
+</section>
+
 </div>
 </body>
 </html>
