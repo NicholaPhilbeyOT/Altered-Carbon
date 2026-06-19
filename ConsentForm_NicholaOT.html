@@ -498,7 +498,28 @@
 
       <!-- Section 4: Privacy & Data -->
       <div class="section">
-        <div class="section-heading"><span class="section-icon">🔒</span> Section 3 — Privacy &amp; Data Use</div>
+        <div class="section-heading"><span class="section-icon">🚨</span> Section 3 — Emergency Contact &amp; Safeguarding</div>
+        <div class="field-row">
+          <div class="field-group">
+            <label class="field-label">Emergency contact name (if different from above)</label>
+            <input type="text" class="field-input" placeholder="Full name">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Emergency contact phone</label>
+            <input type="tel" class="field-input" placeholder="Mobile or home number">
+          </div>
+        </div>
+        <div class="info-box" style="margin-top:12px">
+          <p>Nichola Philbey OT has a duty of care to protect the welfare of children. In rare circumstances where a safeguarding concern arises, it may be necessary to share information with statutory agencies without prior consent. This duty overrides confidentiality in the interests of child safety.</p>
+        </div>
+        <label class="checkbox-item" style="margin-top:4px">
+          <input type="checkbox" required>
+          <span class="checkbox-label"><strong>I understand that in exceptional circumstances relating to safeguarding</strong>, information may be shared with appropriate agencies in the best interests of my child. <span style="color:var(--amber)">*</span></span>
+        </label>
+      </div>
+
+      <div class="section">
+        <div class="section-heading"><span class="section-icon">🔒</span> Section 4 — Privacy &amp; Data Use</div>
         <div class="info-box">
           <p>Nichola Philbey Occupational Therapy takes the privacy of your family seriously. The following explains how your information will be used.</p>
           <p>Your information is held securely in an encrypted, GDPR-compliant system. It will never be sold or shared for marketing purposes. You have the right to access, correct, or request deletion of your data at any time by emailing Nichola@NPOT.co.uk.</p>
@@ -530,7 +551,7 @@
 
       <!-- Section 5: Consent to Assess & Treat -->
       <div class="section">
-        <div class="section-heading"><span class="section-icon">✅</span> Section 4 — Consent to Assess &amp; Treat</div>
+        <div class="section-heading"><span class="section-icon">✅</span> Section 5 — Consent to Assess &amp; Treat</div>
         <div class="info-box">
           <p>Occupational therapy assessment may include standardised tests of motor skills (e.g. MABC-2, BOT-2), sensory processing questionnaires (e.g. SPM-2), handwriting and fine motor observation, and activities of daily living assessment. Your child will never be asked to do anything they&rsquo;re not comfortable with, and you may withdraw consent at any time.</p>
           <p>Treatment may include direct therapy sessions, home programmes, school-based recommendations, equipment advice, and report writing. Fees will be discussed and agreed before any chargeable work begins.</p>
@@ -560,26 +581,7 @@
       </div>
 
       <!-- Section 6: Emergency & Safeguarding -->
-      <div class="section">
-        <div class="section-heading"><span class="section-icon">🚨</span> Section 5 — Emergency Contact &amp; Safeguarding</div>
-        <div class="field-row">
-          <div class="field-group">
-            <label class="field-label">Emergency contact name (if different from above)</label>
-            <input type="text" class="field-input" placeholder="Full name">
-          </div>
-          <div class="field-group">
-            <label class="field-label">Emergency contact phone</label>
-            <input type="tel" class="field-input" placeholder="Mobile or home number">
-          </div>
-        </div>
-        <div class="info-box" style="margin-top:12px">
-          <p>Nichola Philbey OT has a duty of care to protect the welfare of children. In rare circumstances where a safeguarding concern arises, it may be necessary to share information with statutory agencies without prior consent. This duty overrides confidentiality in the interests of child safety.</p>
-        </div>
-        <label class="checkbox-item" style="margin-top:4px">
-          <input type="checkbox" required>
-          <span class="checkbox-label"><strong>I understand that in exceptional circumstances relating to safeguarding</strong>, information may be shared with appropriate agencies in the best interests of my child. <span style="color:var(--amber)">*</span></span>
-        </label>
-      </div>
+
 
       <!-- Section 7: Signature -->
       <div class="section">
@@ -617,7 +619,8 @@
 
       <div class="submit-area">
         <button class="submit-btn" onclick="handleSubmit()">Submit Consent Form</button>
-        <div class="submit-note">Your submission is encrypted and stored securely. You will receive a confirmation email within 24 hours.</div>
+      <button type="button" class="copy-btn" onclick="saveMyCopy('Consent Form — your answers')" style="display:inline-block;margin-top:10px;margin-left:8px;background:#fff;color:#4A7C6F;border:1.5px solid #4A7C6F;border-radius:8px;padding:11px 20px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit">📄 Save a copy of my answers</button>
+        <div class="submit-note">Your submission is encrypted and stored securely. It&rsquo;s a good idea to save a copy for your own records (button above). If the form won&rsquo;t send, please save a copy and email it to Nichola@NPOT.co.uk, or bring it to your first appointment.</div>
       </div>
 
     </div>
@@ -713,37 +716,9 @@
         </div>
       </div>
 
-      <div class="section">
-        <div class="section-heading"><span class="section-icon">📋</span> Section 3 — Reason for Referral</div>
-        <div style="display:flex; flex-direction:column; gap:10px">
-          <div style="background:var(--sand); border:1px solid var(--sand-border); border-radius:8px; padding:12px 16px">
-            <div style="font-size:11px; color:var(--ink-light); margin-bottom:4px">Question 16 <span class="q-type" style="background:#E8F0FE; color:#1A3A9E">Choice — Single select · Required</span></div>
-            <div style="font-size:13.5px; font-weight:600; color:var(--ink)">Who is referring your child?</div>
-            <div style="font-size:12px; color:var(--ink-light); margin-top:4px">Options: Self / family · School / SENCO · GP · Paediatrician · Other professional</div>
-          </div>
-          <div style="background:var(--sand); border:1px solid var(--sand-border); border-radius:8px; padding:12px 16px">
-            <div style="font-size:11px; color:var(--ink-light); margin-bottom:4px">Question 17 <span class="q-type" style="background:#E8F0FE; color:#1A3A9E">Text — Long answer · Required</span></div>
-            <div style="font-size:13.5px; font-weight:600; color:var(--ink)">What are your main concerns about your child?</div>
-            <div style="font-size:12px; color:var(--ink-light); margin-top:4px">Subtitle: Please describe the difficulties you have noticed — e.g. handwriting, coordination, self-care, sensory sensitivities, emotional regulation</div>
-          </div>
-          <div style="background:var(--sand); border:1px solid var(--sand-border); border-radius:8px; padding:12px 16px">
-            <div style="font-size:11px; color:var(--ink-light); margin-bottom:4px">Question 18 <span class="q-type" style="background:#E8F0FE; color:#1A3A9E">Text — Short answer</span></div>
-            <div style="font-size:13.5px; font-weight:600; color:var(--ink)">When did you first notice these difficulties?</div>
-          </div>
-          <div style="background:var(--sand); border:1px solid var(--sand-border); border-radius:8px; padding:12px 16px">
-            <div style="font-size:11px; color:var(--ink-light); margin-bottom:4px">Question 19 <span class="q-type" style="background:#E8F0FE; color:#1A3A9E">Text — Long answer</span></div>
-            <div style="font-size:13.5px; font-weight:600; color:var(--ink)">What do you hope OT will help with?</div>
-          </div>
-          <div style="background:var(--sand); border:1px solid var(--sand-border); border-radius:8px; padding:12px 16px">
-            <div style="font-size:11px; color:var(--ink-light); margin-bottom:4px">Question 20 <span class="q-type" style="background:#E8F0FE; color:#1A3A9E">Choice — Single select</span></div>
-            <div style="font-size:13.5px; font-weight:600; color:var(--ink)">Has your child received OT, physiotherapy, or speech therapy before?</div>
-            <div style="font-size:12px; color:var(--ink-light); margin-top:4px">Options: Yes · No — if Yes, show follow-up text field for details</div>
-          </div>
-        </div>
-      </div>
 
       <div class="section">
-        <div class="section-heading"><span class="section-icon">🔒</span> Sections 4, 5, 6 — Consent &amp; Privacy Checkboxes</div>
+        <div class="section-heading"><span class="section-icon">🔒</span> Sections 3, 4, 5 — Consent &amp; Privacy Checkboxes</div>
         <div style="background:var(--sand); border:1px solid var(--sand-border); border-radius:8px; padding:16px">
           <div style="font-size:12.5px; color:var(--ink-mid); line-height:1.9">
             <p style="margin-bottom:10px">In Microsoft Forms, use <strong>Text sections</strong> to display the privacy and consent statements, followed by <strong>Choice — Checkbox (multi-select)</strong> questions for each consent item.</p>
@@ -756,7 +731,7 @@
       </div>
 
       <div class="section">
-        <div class="section-heading"><span class="section-icon">✍️</span> Section 7 — Declaration</div>
+        <div class="section-heading"><span class="section-icon">✍️</span> Section 6 — Declaration</div>
         <div style="display:flex; flex-direction:column; gap:10px">
           <div style="background:var(--sand); border:1px solid var(--sand-border); border-radius:8px; padding:12px 16px">
             <div style="font-size:11px; color:var(--ink-light); margin-bottom:4px">Question 25 <span class="q-type" style="background:#E8F0FE; color:#1A3A9E">Text — Short answer · Required</span></div>
@@ -866,37 +841,24 @@
         </div>
       </div>
 
+
       <div class="section">
-        <div class="section-heading"><span class="section-icon">📋</span> Section 3 — Reason for Referral</div>
-        <div class="field-row single">
+        <div class="section-heading"><span class="section-icon">🚨</span> Section 3 — Emergency Contact &amp; Safeguarding</div>
+        <div class="field-row">
           <div class="field-group">
-            <label class="field-label">Who is referring your child? <span class="required">*</span></label>
-            <div class="radio-group" style="margin-top:6px">
-              <label class="radio-item"><input type="radio" name="ref-p"> Self / family</label>
-              <label class="radio-item"><input type="radio" name="ref-p"> School / SENCO</label>
-              <label class="radio-item"><input type="radio" name="ref-p"> GP</label>
-              <label class="radio-item"><input type="radio" name="ref-p"> Paediatrician</label>
-              <label class="radio-item"><input type="radio" name="ref-p"> Other</label>
-            </div>
-          </div>
-        </div>
-        <div class="field-row single">
-          <div class="field-group">
-            <label class="field-label">Main concerns about your child <span class="required">*</span></label>
-            <textarea class="field-input" rows="4" placeholder=""></textarea>
-          </div>
-        </div>
-        <div class="field-row single">
-          <div class="field-group">
-            <label class="field-label">What do you hope OT will help with?</label>
-            <textarea class="field-input" rows="3" placeholder=""></textarea>
-          </div>
-        </div>
-        <div class="field-row single">
-          <div class="field-group">
-            <label class="field-label">Previous OT / physio / SALT input (if any)</label>
+            <label class="field-label">Emergency contact name</label>
             <input type="text" class="field-input" placeholder="">
           </div>
+          <div class="field-group">
+            <label class="field-label">Emergency contact phone</label>
+            <input type="text" class="field-input" placeholder="">
+          </div>
+        </div>
+        <div class="checkbox-list" style="margin-top:12px">
+          <label class="checkbox-item">
+            <input type="checkbox">
+            <span class="checkbox-label"><strong>I understand that in exceptional safeguarding circumstances</strong>, information may be shared with appropriate agencies. <span style="color:var(--amber)">*</span></span>
+          </label>
         </div>
       </div>
 
@@ -943,28 +905,10 @@
         </div>
       </div>
 
-      <div class="section">
-        <div class="section-heading"><span class="section-icon">🚨</span> Section 6 — Emergency Contact &amp; Safeguarding</div>
-        <div class="field-row">
-          <div class="field-group">
-            <label class="field-label">Emergency contact name</label>
-            <input type="text" class="field-input" placeholder="">
-          </div>
-          <div class="field-group">
-            <label class="field-label">Emergency contact phone</label>
-            <input type="text" class="field-input" placeholder="">
-          </div>
-        </div>
-        <div class="checkbox-list" style="margin-top:12px">
-          <label class="checkbox-item">
-            <input type="checkbox">
-            <span class="checkbox-label"><strong>I understand that in exceptional safeguarding circumstances</strong>, information may be shared with appropriate agencies. <span style="color:var(--amber)">*</span></span>
-          </label>
-        </div>
-      </div>
+
 
       <div class="section">
-        <div class="section-heading"><span class="section-icon">✍️</span> Section 7 — Signature</div>
+        <div class="section-heading"><span class="section-icon">✍️</span> Section 6 — Signature</div>
         <div class="signature-box">
           <div class="signature-declaration">
             By signing below I confirm that I am the parent or legal guardian of the child named above, I have read and understood all sections of this consent form, and the information provided is accurate to the best of my knowledge.
@@ -1020,6 +964,36 @@
     const b64 = (buf) => btoa(String.fromCharCode.apply(null, new Uint8Array(buf)));
     return { wk: b64(wk), iv: b64(iv), ct: b64(ct) };
   }
+  function _esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function _captureForCopy(){
+    var answers={};
+    document.querySelectorAll('#content-digital .field-group').forEach(function(grp){
+      var lab=grp.querySelector('.field-label');
+      var key=lab?lab.textContent.replace(/\*/g,'').replace(/\s+/g,' ').trim():'';
+      var checks=grp.querySelectorAll('.check-item input[type=checkbox], .checklist-grid input[type=checkbox]');
+      if(checks.length){var picked=[];checks.forEach(function(c){if(c.checked){var cl=c.closest('label');picked.push(cl?cl.textContent.replace(/\s+/g,' ').trim():'Yes');}});if(!key)key='Selections';if(picked.length)answers[key]=picked.join(', ');return;}
+      var radios=grp.querySelectorAll('input[type=radio]');
+      if(radios.length){var chosen='';radios.forEach(function(r){if(r.checked){var ll=r.closest('label');chosen=ll?ll.textContent.replace(/\s+/g,' ').trim():(r.getAttribute('value')||'');}});if(!key)key=radios[0].name||'field';if(chosen)answers[key]=chosen;var extra=grp.querySelector('input:not([type=radio]):not([type=checkbox]), textarea, select');if(extra){var ev=(extra.value||'').trim();if(ev)answers[key+' — details']=ev;}return;}
+      var inp=grp.querySelector('input, textarea, select');if(!inp)return;if(!key)key=inp.id||inp.name||'field';var v=(inp.value||'').trim();if(v)answers[key]=v;
+    });
+    document.querySelectorAll('#content-digital .checkbox-item').forEach(function(item){var c=item.querySelector('input[type=checkbox]');var lab=item.querySelector('.checkbox-label');if(c&&lab){answers[lab.textContent.replace(/\*/g,'').replace(/\s+/g,' ').trim().slice(0,90)]=c.checked?'Yes':'No';}});
+    return answers;
+  }
+  function _saveCopy(answers,title){
+    var keys=Object.keys(answers).filter(function(k){return !/^_/.test(k)&&answers[k]!==''&&answers[k]!==false&&answers[k]!=null;});
+    if(!keys.length){alert('Please fill in the form first, then save your copy.');return;}
+    var rows=keys.map(function(k){var v=answers[k];if(v===true)v='Yes';return '<tr><th>'+_esc(k)+'</th><td>'+_esc(String(v))+'</td></tr>';}).join('');
+    var when=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+    var html='<!doctype html><html><head><meta charset="utf-8"><title>'+_esc(title)+'</title>'+
+      '<style>body{font:14px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;color:#2c3a33;max-width:720px;margin:22px auto;padding:0 18px}h1{font-size:19px;color:#2E5248;margin:0 0 2px}.meta{color:#5c6b62;font-size:13px;margin-bottom:16px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #e4e0d6;padding:8px 10px;text-align:left;vertical-align:top;font-size:13px}th{background:#eef2ee;width:40%;font-weight:600;color:#2E5248}.note{background:#eef2ee;border-radius:8px;padding:10px 12px;font-size:13px;margin-bottom:16px}@media print{.noprint{display:none}}</style>'+
+      '</head><body><h1>'+_esc(title)+'</h1><div class="meta">Nichola Philbey Occupational Therapy &middot; copy saved '+when+'</div>'+
+      '<div class="note noprint">This is your personal copy. Use <strong>Print &rarr; Save as PDF</strong> (or your phone&rsquo;s share &rarr; Save to Files) to keep it. <button class="noprint" onclick="window.print()" style="margin-left:8px;padding:7px 13px;border:none;background:#4A7C6F;color:#fff;border-radius:7px;cursor:pointer;font-weight:600">Save as PDF</button></div>'+
+      '<table>'+rows+'</table></body></html>';
+    var w=window.open('','_blank');
+    if(!w){var blob=new Blob([html],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=title.replace(/[^a-z0-9]+/gi,'_')+'.html';document.body.appendChild(a);a.click();a.remove();return;}
+    w.document.write(html);w.document.close();
+  }
+  function saveMyCopy(t){ _saveCopy(_captureForCopy(), t); }
   function handleSubmit() {
     const required = document.querySelectorAll('#content-digital [required]');
     let missing = 0;
@@ -1070,8 +1044,8 @@
         const env = await _intakeEncrypt(krows[0].jwk, JSON.stringify(answers));
         const r = await fetch(SB_URL + '/rest/v1/intake_submissions', { method:'POST', headers:{ apikey: SB_KEY, 'Content-Type':'application/json' }, body: JSON.stringify({ form_type:'consent_child', payload: env }) });
         if (!(r.ok || r.status===201)) throw new Error('status ' + r.status);
-        alert('Thank you \u2014 your form has been securely sent to Nichola.');
-      } catch(e) { alert('Sorry, there was a problem sending the form. Please try again, or contact Nichola directly. (' + e.message + ')'); }
+        alert('Thank you \u2014 your form has been securely sent to Nichola.\n\nKeep a copy for your records using the Save a copy button below.');
+      } catch(e) { alert('Sorry, there was a problem sending the form. Please use the Save a copy button below and email your copy to Nichola@NPOT.co.uk, or try again. (' + e.message + ')'); }
     })();
   }
 </script>
