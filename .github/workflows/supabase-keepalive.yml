@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------------------
+# Supabase keep-alive - pings BOTH projects from GitHub's servers so neither
+# free-tier project ever reaches 7 days of inactivity and gets auto-paused.
+# No laptop needed, no cron-job.org, no secrets (the publishable keys below are
+# the same public ones already baked into the site's HTML).
+#
+# Runs every 3 days; check the Actions tab now and then to confirm it's green.
+# NOTE: GitHub disables scheduled workflows after ~60 days without commits -
+# normal dashboard build uploads keep it alive.
+# ---------------------------------------------------------------------------
+name: Supabase keepalive
+
+on:
+  schedule:
+    - cron: '0 9 */3 * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping forms project (intake_submissions)
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://oufbdwbkurlepyskoooe.supabase.co/rest/v1/intake_submissions?select=id&limit=1" \
+            -H "apikey: sb_publishable_O8cX_cDWkZZKI4F-77T-2w_CeeTnRP0" \
+            -H "Authorization: Bearer sb_publishable_O8cX_cDWkZZKI4F-77T-2w_CeeTnRP0")
+          echo "Forms project responded with HTTP $code"
+          if [ "$code" != "200" ] && [ "$code" != "206" ]; then
+            echo "::error::Forms-project ping did not return data (HTTP $code) - check the key or table."
+            exit 1
+          fi
+
+      - name: Ping main dashboard project (ot_data)
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            "https://hfeykelfvhnigkaemven.supabase.co/rest/v1/ot_data?select=id&limit=1" \
+            -H "apikey: sb_publishable_NKliCgQ-_WUhGOxUg6g6aw_KOVM7K_K" \
+            -H "Authorization: Bearer sb_publishable_NKliCgQ-_WUhGOxUg6g6aw_KOVM7K_K")
+          echo "Main project responded with HTTP $code"
+          if [ "$code" != "200" ] && [ "$code" != "206" ]; then
+            echo "::error::Main-project ping did not return data (HTTP $code) - check the key or table."
+            exit 1
+          fi
