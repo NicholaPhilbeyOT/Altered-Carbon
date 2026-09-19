@@ -1,12 +1,25 @@
 # ---------------------------------------------------------------------------
-# Supabase keep-alive - pings BOTH projects from GitHub's servers so neither
-# free-tier project ever reaches 7 days of inactivity and gets auto-paused.
+# Supabase keep-alive — pings BOTH projects from GitHub's servers so neither
+# free-tier project reaches 7 days of inactivity and gets auto-paused.
 # No laptop needed, no cron-job.org, no secrets (the publishable keys below are
 # the same public ones already baked into the site's HTML).
 #
-# Runs every 3 days; check the Actions tab now and then to confirm it's green.
-# NOTE: GitHub disables scheduled workflows after ~60 days without commits -
-# normal dashboard build uploads keep it alive.
+# THIS FILE LIVES IN:  NicholaPhilbeyOT/Altered-Carbon
+#                      .github/workflows/supabase-keepalive.yml
+#
+# WHY IT WAS REWRITTEN (19 Sep 2026)
+# GitHub disables scheduled workflows after ~60 days with no repository
+# activity. The previous version relied on "normal dashboard build uploads keep
+# it alive" — but the last commit here was 19 July, so GitHub flagged it for
+# disabling and the keepalive was on borrowed time.
+#
+# A self-re-enable step cannot solve this: once GitHub disables the workflow it
+# stops running, so it can never call the enable API on itself. The only thing
+# that resets the clock is actual repository activity — so the final step now
+# commits a heartbeat file on every run. The workflow keeps itself alive.
+#
+# It runs every 3 days. Supabase pauses after 7, so a single missed run is
+# harmless. Check the Actions tab now and then to confirm it's green.
 # ---------------------------------------------------------------------------
 name: Supabase keepalive
 
@@ -15,10 +28,16 @@ on:
     - cron: '0 9 */3 * *'
   workflow_dispatch:
 
+# Needed so the heartbeat step can push its commit back to the repo.
+permissions:
+  contents: write
+
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Ping forms project (intake_submissions)
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" \
@@ -42,3 +61,16 @@ jobs:
             echo "::error::Main-project ping did not return data (HTTP $code) - check the key or table."
             exit 1
           fi
+
+      # Runs even if a ping failed, so a bad key can never also silently kill the
+      # schedule 60 days later. A failed ping still fails the job and emails you.
+      - name: Heartbeat commit (resets GitHub's 60-day inactivity clock)
+        if: always()
+        run: |
+          mkdir -p .github
+          date -u +"Last Supabase keepalive run: %Y-%m-%d %H:%M:%S UTC" > .github/last-keepalive.txt
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/last-keepalive.txt
+          git diff --staged --quiet || git commit -m "chore: supabase keepalive heartbeat"
+          git push
